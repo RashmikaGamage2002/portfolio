@@ -1,66 +1,56 @@
 export const personalInfo = {
-  name: 'Rashmika Gamage',
-  title: 'Software Engineer',
-  subtitle: 'Frontend Developer | UI/UX Enthusiast',
-  email: 'your.email@example.com',
-  location: 'Sri Lanka',
-  education: 'BSc (Hons) Software Engineering, NSBM',
-  about:
-    'Passionate Software Engineering student with hands-on experience building full-stack applications, creating polished UI/UX experiences, and collaborating across teams to deliver reliable digital products.',
-};
-
-export const skills = {
-  languages: ['JavaScript', 'TypeScript', 'Java', 'Python', 'C#'],
-  frameworks: ['React', 'Node.js', 'Tailwind CSS'],
-  tools: ['Git', 'Docker', 'Figma', 'Vite'],
-  databases: ['MySQL', 'MongoDB'],
+  name: "Rashmika Gamage",
+  title: "Software Engineer",
+  subtitle: "Frontend Developer | UI/UX Enthusiast",
+  email: "rashmikagamage077@gmail.com",
+  location: "Homagama, Sri Lanka",
+  education: "BSc (Hons) Software Engineering, NSBM",
 };
 
 export const projects = [
   {
     id: 1,
-    title: 'Auction Web System',
-    description: 'Real-time bidding platform with modern UI and real-time updates.',
+    title: "Auction Web System",
+    description: "Real-time bidding platform with live updates, user authentication, and modern UI design",
     tech: ['React', 'Vite', 'Tailwind CSS', 'Socket.io'],
-    github: 'https://github.com/yourusername/auction-system',
-    live: 'https://auction-system.vercel.app',
-    image: '/assets/auction.jpg',
+    github: "https://github.com/yourusername/auction-system",
+    live: "https://auction-system.vercel.app",
+    image: "/assets/auction.png",
   },
   {
     id: 2,
-    title: 'Portfolio Website',
-    description: 'Responsive portfolio site showcasing projects, skills, and contact details.',
-    tech: ['React', 'Tailwind CSS', 'Framer Motion'],
-    github: 'https://github.com/yourusername/portfolio',
-    live: 'https://your-portfolio.vercel.app',
-    image: '/assets/portfolio.jpg',
+    title: "ETA Sri Lanka Redesign",
+    description: "Complete UI/UX redesign for the Electronic Travel Authorization website with improved accessibility",
+    tech: ['Figma', 'React', 'Tailwind CSS'],
+    github: "https://github.com/yourusername/eta-redesign",
+    live: "https://eta-redesign.vercel.app",
+    image: "/assets/eta.png",
+  },
+  {
+    id: 3,
+    title: "Court Digitalization Proposal",
+    description: "Digital transformation proposal for the judicial system with case management and document tracking",
+    tech: ['Java', 'Spring Boot', 'MySQL', 'React'],
+    github: "https://github.com/yourusername/court-digitalization",
+    live: "#",
+    image: "/assets/court.png",
   },
 ];
 
 export const experience = [
   {
-    company: 'Daraz',
-    role: 'Project Assistant (Internship)',
-    period: '2024 - Present',
-    description: 'Working on frontend development and UI improvements.',
-  },
-  {
-    company: 'Campus Tech Hub',
-    role: 'Software Engineering Intern',
-    period: '2023 - 2024',
-    description: 'Supported web app development, design systems, and feature delivery.',
+    company: "Daraz",
+    role: "Project Assistant (Internship)",
+    period: "2024 - Present",
+    description: "Working on frontend development, UI improvements, and collaborating with cross-functional teams",
   },
 ];
 
 export const certifications = [
   {
-    name: 'Alison - Software Engineering',
-    issuer: 'Alison',
-    link: '#',
+    name: "Software Engineering",
+    issuer: "Alison",
+    link: "#",
   },
-  {
-    name: 'FreeCodeCamp - Front End Development',
-    issuer: 'freeCodeCamp',
-    link: '#',
-  },
+  // Add more certifications
 ];

@@ -1,42 +1,89 @@
 import { motion } from 'framer-motion';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { projects } from '../data/data';
 
 const Projects = () => {
   return (
     <section id="projects" className="py-20 bg-secondary">
       <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-12">Projects</h2>
-        <div className="grid gap-8 md:grid-cols-2">
-          {projects.map((project) => (
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Featured Projects</h2>
+          <p className="text-dimText text-lg max-w-2xl mx-auto">
+            Some of my recent work that showcases my skills and passion for development
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-primary rounded-3xl overflow-hidden shadow-2xl border border-white/10"
+              className="group relative bg-cardBg rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-accent/10 transition-all duration-500"
             >
-              <img src={project.image} alt={project.title} className="w-full h-64 object-cover" />
-              <div className="p-8 space-y-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-2xl font-semibold">{project.title}</h3>
-                  <div className="text-accent text-sm">Featured</div>
+              {/* Project Image */}
+              <div className="relative overflow-hidden h-56">
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Overlay Links */}
+                <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                  {project.github && (
+                    <motion.a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 bg-lightText/10 backdrop-blur-md rounded-full hover:bg-accent transition-colors"
+                      whileHover={{ scale: 1.1 }}
+                    >
+                      <FaGithub className="text-2xl text-lightText" />
+                    </motion.a>
+                  )}
+                  {project.live && (
+                    <motion.a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 bg-accent rounded-full hover:bg-accent-dark transition-colors"
+                      whileHover={{ scale: 1.1 }}
+                    >
+                      <FaExternalLinkAlt className="text-2xl text-primary" />
+                    </motion.a>
+                  )}
                 </div>
-                <p className="text-dimText leading-relaxed">{project.description}</p>
+              </div>
+
+              {/* Content */}
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-lightText mb-2 group-hover:text-accent transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-dimText text-sm mb-4 leading-relaxed">
+                  {project.description}
+                </p>
+                
+                {/* Tech Tags */}
                 <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
-                    <span key={tech} className="px-3 py-1 rounded-full bg-white/10 text-sm text-lightText">
+                  {project.tech.map((tech, idx) => (
+                    <span 
+                      key={idx}
+                      className="px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full border border-accent/20"
+                    >
                       {tech}
                     </span>
                   ))}
-                </div>
-                <div className="flex flex-wrap gap-4">
-                  <a href={project.github} target="_blank" rel="noreferrer" className="text-accent hover:text-lightText">
-                    GitHub
-                  </a>
-                  <a href={project.live} target="_blank" rel="noreferrer" className="text-accent hover:text-lightText">
-                    Live Demo
-                  </a>
                 </div>
               </div>
             </motion.div>
