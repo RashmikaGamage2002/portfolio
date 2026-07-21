@@ -66,7 +66,7 @@ const About = () => {
             </p>
 
             <div className="mt-8 pt-6 border-t border-primary/50 flex flex-wrap gap-x-6 gap-y-2 text-sm text-dimText text-left">
-              <span><span className="font-semibold text-lightText">🎂 Born:</span> [Your Date of Birth]</span>
+              <span><span className="font-semibold text-lightText">🎂 Born:</span> [24/March/2002]</span>
               <span><span className="font-semibold text-lightText">📍 Location:</span> {personalInfo.location}</span>
               <span><span className="font-semibold text-lightText">🎓 Education:</span> {personalInfo.education}</span>
             </div>

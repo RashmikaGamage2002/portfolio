@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaFigma } from 'react-icons/fa';
 import { projects } from '../data/data';
 
 const Projects = () => {
@@ -51,6 +51,17 @@ const Projects = () => {
                       <FaGithub className="text-2xl text-lightText" />
                     </motion.a>
                   )}
+                  {project.figma && (
+                    <motion.a
+                      href={project.figma}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 bg-[#fcfcfc]/20 backdrop-blur-md rounded-full hover:bg-[#fcfcfc]/40 transition-colors"
+                      whileHover={{ scale: 1.1 }}
+                    >
+                      <FaFigma className="text-2xl text-[#000000]" />
+                    </motion.a>
+                  )}
                   {project.live && (
                     <motion.a
                       href={project.live}
@@ -85,6 +96,16 @@ const Projects = () => {
                     </span>
                   ))}
                 </div>
+                {project.figma && (
+                  <motion.a
+                    href={project.figma}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-[#A259FF]/10 text-[#A259FF] rounded-lg hover:bg-[#A259FF]/20 transition-colors text-sm font-medium"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                  </motion.a>
+                )}
               </div>
             </motion.div>
           ))}
