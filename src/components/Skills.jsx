@@ -51,7 +51,9 @@ const Skills = () => {
         {Object.entries(skillCategories).map(([category, skills], categoryIndex) => (
           <div key={categoryIndex} className="mb-12">
             <h3 className="text-xl font-semibold text-accent mb-6 text-center">{category}</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-5xl mx-auto">
+            
+            
+            <div className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">
               {skills.map((skill, index) => {
                 const Icon = iconMap[skill];
                 return (
@@ -61,7 +63,7 @@ const Skills = () => {
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.3, delay: index * 0.05 }}
                     viewport={{ once: true }}
-                    className="group bg-secondary p-6 rounded-xl text-center hover:shadow-xl hover:shadow-accent/20 transition-all duration-300 hover:-translate-y-2 border border-secondary hover:border-accent/30"
+                    className="group bg-secondary p-6 rounded-xl text-center hover:shadow-xl hover:shadow-accent/20 transition-all duration-300 hover:-translate-y-2 border border-secondary hover:border-accent/30 w-[150px] flex-shrink-0"
                   >
                     {Icon && (
                       <Icon className="text-5xl mx-auto mb-3 text-dimText group-hover:text-accent transition-colors duration-300" />

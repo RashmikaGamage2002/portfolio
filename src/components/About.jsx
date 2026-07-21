@@ -13,7 +13,7 @@ const About = () => {
         }}
       >
         {/* Dark Overlay - adjust opacity as needed */}
-        <div className="absolute inset-0 bg-primary/50 "></div>
+        <div className="absolute inset-0 bg-primary/10 "></div>
       </div>
 
       {/* Content - positioned on top of background */}

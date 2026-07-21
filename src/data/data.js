@@ -15,7 +15,7 @@ export const projects = [
     tech: ['React', 'Vite', 'Tailwind CSS', 'Socket.io'],
     github: "https://github.com/yourusername/auction-system",
     live: "https://auction-system.vercel.app",
-    image: "/assets/auction.png",
+    image: "/auction.png",
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ export const projects = [
     tech: ['Figma', 'React', 'Tailwind CSS'],
     github: "https://github.com/yourusername/eta-redesign",
     live: "https://eta-redesign.vercel.app",
-    image: "/assets/eta.png",
+    image: "/ETA.jpg",
   },
   {
     id: 3,
