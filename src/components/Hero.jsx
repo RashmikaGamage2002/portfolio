@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaTwitter, FaDownload } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaDownload } from 'react-icons/fa';
+import { AiFillInstagram } from 'react-icons/ai';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 
 const Hero = () => {
@@ -130,9 +131,9 @@ const Hero = () => {
             transition={{ delay: 0.8 }}
           >
             {[
-              { icon: FaGithub, link: '#' },
-              { icon: FaLinkedin, link: '#' },
-              { icon: FaTwitter, link: '#' },
+              { icon: FaGithub, link: 'https://github.com/RashmikaGamage2002' },
+              { icon: FaLinkedin, link: 'www.linkedin.com/in/rashmika-gamage-b6979b29a' },
+              { icon: AiFillInstagram, link: 'https://www.instagram.com/rashmika_gamagee/?hl=en' },
             ].map((social, index) => (
               <motion.a
                 key={index}
