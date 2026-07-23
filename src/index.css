@@ -2,211 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-
-
-
 @layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
+  html {
+    scroll-behavior: smooth;
+  }
 
-*{
+  body {
+    @apply bg-primary text-lightText;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-margin:0;
-padding:0;
-box-sizing:border-box;
+  ::selection {
+    @apply bg-accent text-primary;
+  }
 
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-primary;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-accent/50 rounded-full hover:bg-accent transition-colors;
+  }
 }
-
-
-
-html{
-
-scroll-behavior:smooth;
-
-}
-
-
-
-body{
-
-
-background:#090909;
-
-color:#F5F5F3;
-
-font-family:"Inter",sans-serif;
-
-overflow-x:hidden;
-
-
-}
-
-
-
-::selection{
-
-background:#6BA8FF;
-
-color:#090909;
-
-}
-
-
-
-::-webkit-scrollbar{
-
-width:8px;
-
-}
-
-
-
-::-webkit-scrollbar-track{
-
-background:#090909;
-
-}
-
-
-
-::-webkit-scrollbar-thumb{
-
-background:#6BA8FF;
-
-border-radius:20px;
-
-}
-
-
-}
-
-
 
 @layer components {
+  .container {
+    @apply max-w-7xl mx-auto;
+  }
 
+  .glass-effect {
+    @apply backdrop-blur-xl bg-primary/80 border border-white/10;
+  }
 
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent to-blue-400 bg-clip-text text-transparent;
+  }
 
-.container{
-
-max-width:1280px;
-
-margin:auto;
-
-padding-left:24px;
-
-padding-right:24px;
-
-
+  .animate-spin-slow {
+    animation: spin 20s linear infinite;
+  }
 }
-
-
-
-.section-title{
-
-
-font-family:"Manrope",sans-serif;
-
-font-size:clamp(2.5rem,5vw,5rem);
-
-font-weight:700;
-
-letter-spacing:-0.05em;
-
-
-}
-
-.contact-input{
-
-width:100%;
-
-background:#111;
-
-border:1px solid #262626;
-
-padding:16px;
-
-border-radius:12px;
-
-color:#F5F5F3;
-
-outline:none;
-
-transition:.3s;
-
-}
-
-
-.contact-input:focus{
-
-border-color:#6BA8FF;
-
-}
-
-
-
-.gradient-text{
-
-
-background:
-linear-gradient(
-90deg,
-#F5F5F3,
-#6BA8FF
-);
-
-
--webkit-background-clip:text;
-
-color:transparent;
-
-
-}
-
-
-
-.glass{
-
-
-background:
-rgba(255,255,255,0.03);
-
-
-backdrop-filter:
-blur(20px);
-
-
-border:
-1px solid rgba(255,255,255,.08);
-
-
-}
-
-
-
-.reveal{
-
-
-animation:
-reveal 1s ease forwards;
-
-
-}
-
-
-
-}
-
-
 
 @layer utilities {
-
-
-.text-balance{
-
-text-wrap:balance;
-
-}
-
-
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 }
