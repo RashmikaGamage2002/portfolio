@@ -23,7 +23,7 @@ const Contact = () => {
   return (
     <section id="contact" className="py-20 bg-secondary">
       <div className="container mx-auto px-6 max-w-3xl">
-        <h2 className="text-4xl font-bold text-center mb-12">Contact</h2>
+        <h2 className="text-4xl md:text-5xl font-bold text-lightText text-center mb-16">Contact</h2>
         <div className="bg-primary rounded-3xl p-8 shadow-2xl border border-white/10">
           <p className="text-dimText text-center mb-8">Send a message and let&apos;s build something great together.</p>
           <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">

@@ -2,16 +2,31 @@ import { useMemo } from 'react';
 import GitHubCalendar from 'react-github-calendar';
 
 const GitHubStats = () => {
-  const username = useMemo(() => 'github', []);
+  const username = useMemo(() => 'RashmikaGamage2002', []);
 
   return (
-    <section id="githubstats" className="py-20 bg-primary">
-      <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-12">GitHub Stats</h2>
-        <div className="bg-secondary rounded-3xl p-8 shadow-2xl border border-white/10">
-          <p className="text-dimText text-center mb-6">Recent GitHub contributions and activity overview.</p>
-          <GitHubCalendar username={username} blockSize={15} blockMargin={6} fontSize={16} />
+    <section id="githubstats" className="py-32 bg-primary border-t border-borderMuted">
+      <div className="container mx-auto px-6 lg:px-16">
+        
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-lightText mb-2">
+            GIT Activity
+          </h2>
+          <p className="text-dimText font-light mt-3 max-w-xl mx-auto">
+            A visual representation of my GitHub contributions and activity over time
+          </p>
         </div>
+
+        <div className="bg-cardBg border border-borderMuted rounded-2xl p-8 max-w-5xl mx-auto flex justify-center overflow-x-auto">
+          <GitHubCalendar 
+            username={username} 
+            blockSize={14} 
+            blockMargin={5} 
+            fontSize={14}
+            colorScheme="dark"
+          />
+        </div>
+
       </div>
     </section>
   );

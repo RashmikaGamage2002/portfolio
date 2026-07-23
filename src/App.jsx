@@ -7,12 +7,12 @@ import Certifications from './components/Certifications';
 import GitHubStats from './components/GitHubStats';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import Cursor from './components/Cursor';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <div className="bg-primary">
-      <Cursor />
+      <Navbar />
       <Hero />
       <About />
       <Skills />

@@ -34,131 +34,138 @@ const Hero = () => {
   return (
     <section 
       id="home" 
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-primary"
+      className="min-h-screen relative overflow-hidden bg-primary"
     >
-      {/* Background Image Overlay */}
-      <div className="absolute inset-0 bg-[url('/hero-bg.jpg')] bg-cover bg-center opacity-60" />
-
-      {/* Content Container - FIXED POSITIONING */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center pt-28 sm:pt-32 md:pt-36 lg:pt-40 xl:pt-44 pb-16 sm:pb-20 md:pb-24"
-        >
-          <div className="mx-auto max-w-3xl">
-          {/* Badge */}
-          <motion.div
-            className="inline-block mb-4 px-4 sm:px-6 py-1.5 sm:py-2 rounded-full bg-accent/10 border border-accent/20"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.3, type: 'spring' }}
-          >
-            <span className="text-accent text-xs sm:text-sm font-medium">Open to Opportunities</span>
-          </motion.div>
-
-          {/* Greeting */}
-          <h2 className="text-gray-400 text-base sm:text-lg md:text-xl mb-2 sm:mb-3">
-            Hi, I'm
-          </h2>
-          
-          {/* Name - Responsive */}
-          <motion.h1 
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-black text-white mb-2 sm:mb-4 leading-tight"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            Rashmika <span className="text-accent">Gamage</span>
-          </motion.h1>
-
-          {/* Typing Effect */}
-          <div className="h-12 sm:h-14 md:h-20 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-            <span className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-gray-400">
-              I'm a
-            </span>
-            <span className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-accent min-w-[100px] sm:min-w-[140px] md:min-w-[160px]">
-              {text}
-              <span className="animate-pulse">|</span>
-            </span>
-          </div>
-
-          {/* Description - Responsive */}
-          <motion.p 
-            className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base md:text-lg mt-4 sm:mt-6 leading-relaxed px-4 sm:px-0"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          >
-            Passionate Software Engineering student with hands-on experience in 
-            building full-stack applications and creating intuitive user experiences.
-          </motion.p>
-
-          {/* Buttons */}
-          <motion.div 
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mt-6 sm:mt-8 md:mt-10 px-4 sm:px-0"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-          >
-            <motion.a
-              href="/Resume.pdf"
-              download
-              className="px-6 sm:px-8 py-3 sm:py-4 bg-accent text-black font-semibold rounded-full shadow-lg shadow-accent/30 hover:shadow-accent/50 transition-all flex items-center justify-center gap-2 text-sm sm:text-base"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <FaDownload className="w-4 h-4" />
-              Download CV
-            </motion.a>
-            
-            <motion.a
-              href="#projects"
-              className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-accent text-accent font-semibold rounded-full hover:bg-accent hover:text-black transition-all text-sm sm:text-base"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              View My Work
-            </motion.a>
-          </motion.div>
-
-          {/* Social Icons */}
-          <motion.div 
-            className="flex justify-center gap-4 sm:gap-6 mt-8 sm:mt-10 md:mt-12"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-          >
-            {[
-              { icon: FaGithub, link: 'https://github.com/RashmikaGamage2002' },
-              { icon: FaLinkedin, link: 'www.linkedin.com/in/rashmika-gamage-b6979b29a' },
-              { icon: AiFillInstagram, link: 'https://www.instagram.com/rashmika_gamagee/?hl=en' },
-            ].map((social, index) => (
-              <motion.a
-                key={index}
-                href={social.link}
-                className="text-gray-400 hover:text-accent transition-all p-2 sm:p-3 rounded-full bg-secondary/50 hover:bg-accent/10 backdrop-blur-sm"
-                whileHover={{ y: -5, scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <social.icon className="text-xl sm:text-2xl" />
-              </motion.a>
-            ))}
-          </motion.div>
-
-          {/* Scroll Indicator */}
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 cursor-pointer"
-          >
-            <a href="#about" className="flex flex-col items-center gap-1 sm:gap-2 text-gray-400 hover:text-accent transition-colors">
-              <span className="text-xs sm:text-sm">Scroll</span>
-              <MdOutlineKeyboardArrowDown className="text-xl sm:text-2xl" />
-            </a>
-          </motion.div>
+      {/* Hero blur background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/10 blur-3xl" />
+        <div className="absolute -bottom-16 right-10 h-80 w-80 rounded-full bg-blue-500/10 blur-3xl" />
+        <div className="absolute inset-0">
+          <img 
+            src="/hero-bg.jpg" 
+            alt="Background"
+            className="w-full h-full object-cover "
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/80 to-primary/95" />
         </div>
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2, ease: [0.77, 0, 0.18, 1] }}
+          className="text-center"
+        >
+          <div className="mx-auto max-w-4xl">                      
+            <motion.p
+              className="text-[12px] uppercase tracking-[0.4em] text-gray-500 mb-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.25, duration: 0.6 }}
+            >
+              Hi, I'm
+            </motion.p>
+
+            <motion.h1 
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[0.95] tracking-tight"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8, ease: [0.77, 0, 0.18, 1] }}
+            >
+              Rashmika
+              
+              <span className="text-accent">Gamage</span>
+            </motion.h1>
+
+            <motion.div 
+              className="mt-5 flex flex-wrap items-center justify-center gap-3"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+            >
+              <span className="text-base sm:text-lg md:text-xl font-light text-gray-300">
+                I'm a
+              </span>
+              <span className="text-base sm:text-lg md:text-xl font-semibold text-accent">
+                {text}
+                <span className="animate-pulse">|</span>
+              </span>
+            </motion.div>
+
+            <motion.p 
+              className="mx-auto mt-6 max-w-2xl text-sm sm:text-base font-light leading-relaxed text-gray-400 px-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+            >
+              Passionate Software Engineering student with hands-on experience in
+              building full-stack applications and creating intuitive user experiences.
+            </motion.p>
+
+            <motion.div 
+              className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9, duration: 0.6 }}
+            >
+              <motion.a
+                href="/Resume.pdf"
+                download
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-9 py-4 text-sm font-semibold text-primary shadow-[0_20px_60px_rgba(0,191,255,0.28)] transition-all hover:bg-blue-400"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <FaDownload className="w-4 h-4" />
+                Download CV
+              </motion.a>
+              
+              <motion.a
+                href="#projects"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-9 py-4 text-sm font-medium text-white transition-all hover:border-accent/30 hover:text-accent"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                View My Work
+              </motion.a>
+            </motion.div>
+
+            <motion.div 
+              className="flex justify-center gap-6 mt-10"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.1, duration: 0.6 }}
+            >
+              {[
+                { icon: FaGithub, link: 'https://github.com/RashmikaGamage2002' },
+                { icon: FaLinkedin, link: 'https://www.linkedin.com/in/rashmika-gamage-b6979b29a' },
+                { icon: AiFillInstagram, link: 'https://www.instagram.com/rashmika_gamagee/?hl=en' },
+              ].map((social, index) => (
+                <motion.a
+                  key={index}
+                  href={social.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-300 transition-colors hover:border-accent/30 hover:text-accent"
+                  whileHover={{ y: -3 }}
+                >
+                  <social.icon className="text-xl" />
+                </motion.a>
+              ))}
+            </motion.div>
+
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+              className="flex justify-center mt-12"
+            >
+              <a href="#about" className="flex flex-col items-center gap-1 text-gray-500 hover:text-accent transition-colors">
+                <span className="text-[10px] tracking-[0.2em] uppercase font-light">Scroll</span>
+                <MdOutlineKeyboardArrowDown className="text-xl" />
+              </a>
+            </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

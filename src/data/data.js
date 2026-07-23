@@ -51,11 +51,19 @@ export const experience = [
   {
     company: "Daraz",
     role: "Project Assistant (Internship)",
-    period: "2024 - Present",
-    description: "Working on frontend development, UI improvements, and collaborating with cross-functional teams",
+    period: "2024 — Present",
+    description:
+      "Working on frontend development, UI improvements, and collaborating with cross-functional teams to ship high-quality features across the platform.",
   },
-];
+{
+    company: "Daraz",
+    role: "Project Assistant (Internship)",
+    period: "2024 — Present",
+    description:
+      "Working on frontend development, UI improvements, and collaborating with cross-functional teams to ship high-quality features across the platform.",
+  },]
 
+  
 export const certifications = [
   {
     name: "Software Engineering",
