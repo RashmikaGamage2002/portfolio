@@ -14,13 +14,10 @@ const Certifications = () => {
           viewport={{ once: true, margin: "-100px" }}
           className="text-center mb-16"
         >
+          <p className="text-xs uppercase tracking-[0.5em] text-accent">Credentials</p>
+          <h2 className="mt-4 text-4xl font-bold text-white sm:text-5xl">Certifications</h2>
+          <div className="mx-auto mt-4 h-1.5 w-24 rounded-full bg-accent" />
           
-          <h2 className="text-4xl md:text-5xl font-bold text-lightText mb-2">
-            Certifications
-          </h2>
-          <p className="text-dimText font-light mt-3 max-w-xl mx-auto">
-            Professional certifications and courses I've completed
-          </p>
         </motion.div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

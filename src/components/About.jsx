@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { personalInfo } from '../data/data';
+import { FaBirthdayCake, FaMapMarkerAlt, FaGraduationCap } from 'react-icons/fa';
 
 const About = () => {
   return (
@@ -66,10 +67,19 @@ const About = () => {
             </p>
 
             <div className="mt-8 pt-6 border-t border-primary/50 flex flex-wrap gap-x-6 gap-y-2 text-sm text-dimText text-left">
-              <span><span className="font-semibold text-lightText">🎂 Born:</span> [24/March/2002]</span>
-              <span><span className="font-semibold text-lightText">📍 Location:</span> {personalInfo.location}</span>
-              <span><span className="font-semibold text-lightText">🎓 Education:</span> {personalInfo.education}</span>
-            </div>
+              <span>
+               <FaBirthdayCake className="inline text-accent mr-2" /> 
+               <span className="font-semibold text-lightText">Born:</span> 24 March 2002
+              </span>
+              <span>
+               <FaMapMarkerAlt className="inline text-accent mr-2" /> 
+               <span className="font-semibold text-lightText">Location:</span> {personalInfo.location}
+              </span>
+              <span>
+               <FaGraduationCap className="inline text-accent mr-2" /> 
+               <span className="font-semibold text-lightText">Education:</span> {personalInfo.education}
+              </span>
+          </div>
           </div>
         </motion.div>
       </div>

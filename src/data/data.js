@@ -50,17 +50,10 @@ export const projects = [
 export const experience = [
   {
     company: "Daraz",
-    role: "Project Assistant (Internship)",
-    period: "2024 — Present",
+    role: "HUB Supervisor",
+    period: "2022 — 2023",
     description:
-      "Working on frontend development, UI improvements, and collaborating with cross-functional teams to ship high-quality features across the platform.",
-  },
-{
-    company: "Daraz",
-    role: "Project Assistant (Internship)",
-    period: "2024 — Present",
-    description:
-      "Working on frontend development, UI improvements, and collaborating with cross-functional teams to ship high-quality features across the platform.",
+      "Managed daily hub operations, supervised staff, monitored shipment processing, and ensured accurate order handling for efficient and timely deliveries.",
   },]
 
   

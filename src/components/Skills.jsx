@@ -42,10 +42,9 @@ const Skills = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Tech Stack</h2>
-          <p className="text-dimText text-lg max-w-2xl mx-auto">
-            Technologies and tools I work with to build amazing digital experiences
-          </p>
+          <p className="text-xs uppercase tracking-[0.5em] text-accent">Toolbox</p>
+          <h2 className="mt-4 text-4xl font-bold text-white sm:text-5xl">Skills & Technologies</h2>
+          <div className="mx-auto mt-4 h-1.5 w-24 rounded-full bg-accent" />
         </motion.div>
 
         {Object.entries(skillCategories).map(([category, skills], categoryIndex) => (

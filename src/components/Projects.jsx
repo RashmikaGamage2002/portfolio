@@ -13,10 +13,9 @@ const Projects = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Featured Projects</h2>
-          <p className="text-dimText text-lg max-w-2xl mx-auto">
-            Some of my recent work that showcases my skills and passion for development
-          </p>
+          <p className="text-xs uppercase tracking-[0.5em] text-accent">My Works</p>
+          <h2 className="mt-4 text-4xl font-bold text-white sm:text-5xl">Featured Projects</h2>
+          <div className="mx-auto mt-4 h-1.5 w-24 rounded-full bg-accent" />
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
