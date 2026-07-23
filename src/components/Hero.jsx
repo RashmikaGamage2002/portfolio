@@ -37,7 +37,7 @@ const Hero = () => {
       className="min-h-screen flex items-center justify-center relative overflow-hidden bg-primary"
     >
       {/* Background Image Overlay */}
-      <div className="absolute inset-0 bg-[url('/hero-bg.png')] bg-cover bg-center opacity-100" />
+      <div className="absolute inset-0 bg-[url('/hero-bg.jpg')] bg-cover bg-center opacity-60" />
 
       {/* Content Container - FIXED POSITIONING */}
       <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
