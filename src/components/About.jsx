@@ -33,8 +33,8 @@ const About = () => {
           <AnimatedHeading           
             direction="split"
             fromLeftText="About"
-            fromRightText="Me"
-            className="mb-4 text-left"            
+            fromRightText="Me"           
+            className="mb-4"            
           />
           
           <motion.div variants={lineReveal} transition={{ duration: 0.7, delay: 0.2, ease: [0.77, 0, 0.18, 1] }} className="w-16 h-1 bg-accent rounded-full mb-8"></motion.div>
