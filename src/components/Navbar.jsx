@@ -18,10 +18,25 @@ const Navbar = () => {
 
   // Handle scroll effect
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
+    let frameId = null;
+
+    const onScroll = () => {
+      if (frameId !== null) return;
+
+      frameId = window.requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 30);
+        frameId = null;
+      });
+    };
+
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId);
+      }
+    };
   }, []);
 
   // Handle active section detection with IntersectionObserver
@@ -60,7 +75,7 @@ const Navbar = () => {
       >
         {/* Desktop Navigation */}
         <nav
-          className={`hidden md:flex items-center gap-1 rounded-full border px-2 py-2 transition-all duration-300 ${
+          className={`hidden md:flex items-center gap-1 rounded-full border px-5 py-4 transition-all duration-300 ${
             scrolled
               ? 'border-white/15 bg-primary/80 backdrop-blur-xl shadow-[0_10px_40px_-15px_rgba(0,191,255,0.25)]'
               : 'border-white/10 bg-white/[0.03] backdrop-blur-md'
@@ -72,15 +87,15 @@ const Navbar = () => {
               <button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
-                className="relative px-4 py-1.5 text-sm font-medium text-gray-400 transition-colors hover:text-white"
+                className="relative px-4 py-1.5 text-sm font-medium text-white-400 transition-colors hover:text-accent"
               >
-                <span className={isActive ? 'text-white' : ''}>{link.label}</span>
+                <span className={isActive ? 'text-accent' : ''}>{link.label}</span>
                 {isActive && (
                   <motion.span
                     layoutId="nav-active"
                     className="absolute inset-0 -z-10 rounded-full"
                     style={{ 
-                      background: 'rgba(0,191,255,0.12)', 
+                      background: 'rgba(0, 191, 255, 0.04)', 
                       border: '1px solid rgba(0,191,255,0.35)' 
                     }}
                     transition={{ type: 'spring', stiffness: 400, damping: 30 }}

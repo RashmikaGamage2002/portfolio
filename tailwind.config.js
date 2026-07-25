@@ -1,3 +1,4 @@
+// tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -23,6 +24,7 @@ export default {
         'glow': 'glow 2s ease-in-out infinite',
         'slide-up': 'slideUp 0.8s ease-out',
         'fade-in': 'fadeIn 0.8s ease-out',
+        'spin-slow': 'spin 20s linear infinite',
       },
       keyframes: {
         float: {
@@ -40,6 +42,10 @@ export default {
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
+        },
+        spin: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
         },
       },
       backgroundImage: {

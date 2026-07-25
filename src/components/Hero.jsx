@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaDownload } from 'react-icons/fa';
 import { AiFillInstagram } from 'react-icons/ai';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
+import { fadeUp, fadeIn, hoverLift, sectionTransition, staggerContainer } from '../animationVariants';
 
 const Hero = () => {
   const [text, setText] = useState('');
@@ -53,26 +54,25 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28">
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, ease: [0.77, 0, 0.18, 1] }}
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+          transition={{ delayChildren: 0.1, staggerChildren: 0.08 }}
           className="text-center"
         >
           <div className="mx-auto max-w-4xl">                      
             <motion.p
               className="text-[12px] uppercase tracking-[0.4em] text-gray-500 mb-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.25, duration: 0.6 }}
+              variants={fadeIn}
+              transition={{ delay: 0.2, duration: 0.6, ease: [0.77, 0, 0.18, 1] }}
             >
               Hi, I'm
             </motion.p>
 
             <motion.h1 
               className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[0.95] tracking-tight"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8, ease: [0.77, 0, 0.18, 1] }}
+              variants={fadeUp}
+              transition={{ delay: 0.25, duration: 0.8, ease: [0.77, 0, 0.18, 1] }}
             >
               Rashmika
               
@@ -81,9 +81,8 @@ const Hero = () => {
 
             <motion.div 
               className="mt-5 flex flex-wrap items-center justify-center gap-3"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
+              variants={fadeIn}
+              transition={{ delay: 0.35, duration: 0.6, ease: [0.77, 0, 0.18, 1] }}
             >
               <span className="text-base sm:text-lg md:text-xl font-light text-gray-300">
                 I'm a
@@ -96,9 +95,8 @@ const Hero = () => {
 
             <motion.p 
               className="mx-auto mt-6 max-w-2xl text-sm sm:text-base font-light leading-relaxed text-gray-400 px-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7, duration: 0.6 }}
+              variants={fadeUp}
+              transition={{ delay: 0.45, duration: 0.6, ease: [0.77, 0, 0.18, 1] }}
             >
               Passionate Software Engineering student with hands-on experience in
               building full-stack applications and creating intuitive user experiences.
@@ -106,9 +104,8 @@ const Hero = () => {
 
             <motion.div 
               className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9, duration: 0.6 }}
+              variants={fadeUp}
+              transition={{ delay: 0.55, duration: 0.6, ease: [0.77, 0, 0.18, 1] }}
             >
               <motion.a
                 href="/Resume.pdf"
@@ -133,9 +130,8 @@ const Hero = () => {
 
             <motion.div 
               className="flex justify-center gap-6 mt-10"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.1, duration: 0.6 }}
+              variants={fadeIn}
+              transition={{ delay: 0.7, duration: 0.6, ease: [0.77, 0, 0.18, 1] }}
             >
               {[
                 { icon: FaGithub, link: 'https://github.com/RashmikaGamage2002' },
@@ -148,7 +144,7 @@ const Hero = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-300 transition-colors hover:border-accent/30 hover:text-accent"
-                  whileHover={{ y: -3 }}
+                  whileHover={hoverLift}
                 >
                   <social.icon className="text-xl" />
                 </motion.a>

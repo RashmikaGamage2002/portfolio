@@ -5,6 +5,8 @@ import {
   SiDocker, SiFigma, SiVite, SiSpringboot, SiPostman 
 } from 'react-icons/si';
 import { FaJava } from 'react-icons/fa';
+import AnimatedHeading from './AnimatedHeading';
+import { fadeUp, cardReveal, staggerContainer, lineReveal, sectionTransition } from '../animationVariants';
 
 const Skills = () => {
   const skillCategories = {
@@ -35,21 +37,28 @@ const Skills = () => {
   return (
     <section id="skills" className="py-20 bg-primary">
       <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <p className="text-xs uppercase tracking-[0.5em] text-accent">Toolbox</p>
-          <h2 className="mt-4 text-4xl font-bold text-white sm:text-5xl">Skills & Technologies</h2>
-          <div className="mx-auto mt-4 h-1.5 w-24 rounded-full bg-accent" />
-        </motion.div>
+         <div className="mb-14 text-center">
+          <AnimatedHeading
+            subtitle="tool box"
+            direction="split"
+            fromLeftText="Skills &"
+            fromRightText="Technologies"
+            className="mb-4"
+          />
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={lineReveal}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.77, 0, 0.18, 1] }}
+            className="mx-auto mt-4 h-1.5 w-24 rounded-full bg-accent"
+          />
+        </div>
 
         {Object.entries(skillCategories).map(([category, skills], categoryIndex) => (
-          <div key={categoryIndex} className="mb-12">
-            <h3 className="text-xl font-semibold text-accent mb-6 text-center">{category}</h3>
+          <motion.div key={categoryIndex} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={staggerContainer} className="mb-12">
+            <motion.h3 variants={fadeUp} transition={{ ...sectionTransition, delay: categoryIndex * 0.05 }} className="text-xl font-semibold text-accent mb-6 text-center">{category}</motion.h3>
             
             
             <div className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">
@@ -58,10 +67,11 @@ const Skills = () => {
                 return (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
-                    viewport={{ once: true }}
+                    variants={cardReveal}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.15 }}
+                    transition={{ duration: 0.45, delay: index * 0.04, ease: [0.77, 0, 0.18, 1] }}
                     className="group bg-secondary p-6 rounded-xl text-center hover:shadow-xl hover:shadow-accent/20 transition-all duration-300 hover:-translate-y-2 border border-secondary hover:border-accent/30 w-[150px] flex-shrink-0"
                   >
                     {Icon && (
@@ -74,7 +84,7 @@ const Skills = () => {
                 );
               })}
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

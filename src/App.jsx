@@ -1,3 +1,5 @@
+// src/App.jsx
+import { motion, useScroll } from 'framer-motion';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
@@ -10,8 +12,16 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 
 function App() {
+  const { scrollYProgress } = useScroll();
+
   return (
     <div className="bg-primary">
+      {/* Scroll Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-0.5 bg-accent z-[9999]"
+        style={{ scaleX: scrollYProgress, transformOrigin: '0% 0%' }}
+      />
+      
       <Navbar />
       <Hero />
       <About />
