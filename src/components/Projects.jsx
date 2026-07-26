@@ -94,7 +94,7 @@ const Projects = () => {
     <section
       ref={containerRef}
       id="projects"
-      className="relative bg-primary"
+      className="relative bg-primary border-t border-white/5"
       style={{ height: sectionHeight }}
     >
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
@@ -108,17 +108,18 @@ const Projects = () => {
           className="flex items-center gap-8 md:gap-12 lg:gap-16 px-6 md:px-10 lg:px-16"
         >
           {/* Header Section */}
-          <motion.div variants={fadeUp} transition={sectionTransition} className="w-[280px] sm:w-[320px] md:w-[380px] lg:w-[450px] flex-shrink-0">
+          <motion.div variants={fadeUp} transition={sectionTransition} className="w-[300px] sm:w-[360px] md:w-[440px] lg:w-[520px] flex-shrink-0">
             <div className="mb-14 text-center">
-          <AnimatedHeading
-            subtitle="My Work"
-            direction="split"
-            fromLeftText="Featured"
-            fromRightText="Projects"
-            className="mb-4 text-left"
-          />
+              <AnimatedHeading
+                subtitle="My Work"
+                direction="split"
+                fromLeftText="Featured"
+                fromRightText="Projects"
+                className="mb-4"
+                align="left"
+              />
 
-        </div>
+            </div>
             <motion.p variants={fadeUp} transition={{ ...sectionTransition, delay: 0.12 }} className="text-dimText font-light mt-4 max-w-sm text-sm sm:text-base leading-relaxed">
               A space for self-initiated products, prototypes, and creative systems
               shaped by curiosity, code, and fast iteration.

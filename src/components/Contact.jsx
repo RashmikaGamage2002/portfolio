@@ -17,7 +17,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="relative overflow-hidden bg-primary py-24 sm:py-32">
+    <section id="contact" className="relative overflow-hidden bg-primary py-24 sm:py-32 border-t border-white/5">
       {/* Background decorations */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-accent/10 to-transparent blur-3xl" />
       <div className="pointer-events-none absolute right-0 top-24 h-64 w-64 rounded-full bg-white/5 blur-3xl" />

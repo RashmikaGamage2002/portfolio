@@ -8,7 +8,7 @@ const About = () => {
   return (
     <section id="about" className="relative min-h-screen py-20 overflow-hidden">
       {/* Background Image with Overlay */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: `url('/about-bg.png')`,
@@ -30,13 +30,15 @@ const About = () => {
           className="pl-[10px] pr-[60px]"
         >
           {/* Heading */}
-          <AnimatedHeading           
+          <AnimatedHeading
+            subtitle="Who I Am"
             direction="split"
             fromLeftText="About"
-            fromRightText="Me"           
-            className="mb-4"            
+            fromRightText="Me"
+            className="mb-4"
+            align="left"
           />
-          
+
           <motion.div variants={lineReveal} transition={{ duration: 0.7, delay: 0.2, ease: [0.77, 0, 0.18, 1] }} className="w-16 h-1 bg-accent rounded-full mb-8"></motion.div>
 
           {/* Content */}
@@ -46,46 +48,46 @@ const About = () => {
             </motion.p>
 
             <p>
-              My journey into software development began with a fascination for technology and its power to solve real-world problems. 
-              I am currently pursuing a BSc (Hons) in Software Engineering at NSBM, where I've built a strong foundation in algorithms, 
+              My journey into software development began with a fascination for technology and its power to solve real-world problems.
+              I am currently pursuing a BSc (Hons) in Software Engineering at NSBM, where I've built a strong foundation in algorithms,
               system design, and modern development practices.
             </p>
 
             <motion.p variants={fadeUp} transition={{ ...sectionTransition, delay: 0.16 }}>
-              Over the past few years, I have developed a diverse skill set, specializing in frontend technologies like React and 
-              Tailwind CSS, while also gaining practical experience in backend development with Node.js and Java. My projects, such 
-              as a real-time auction web system and a complete UI/UX redesign for the ETA Sri Lanka website, demonstrate my ability 
+              Over the past few years, I have developed a diverse skill set, specializing in frontend technologies like React and
+              Tailwind CSS, while also gaining practical experience in backend development with Node.js and Java. My projects, such
+              as a real-time auction web system and a complete UI/UX redesign for the ETA Sri Lanka website, demonstrate my ability
               to apply technical craft to create intuitive and impactful digital experiences.
             </motion.p>
 
             <motion.div variants={cardReveal} transition={{ ...sectionTransition, delay: 0.2 }} className="my-8 p-6 bg-primary/40 backdrop-blur-md border-l-4 border-accent rounded-r-xl">
               <p className="italic text-lightText">
-                "Since 2024, I've been actively shaping my professional identity through internships, personal projects, and 
-                continuous learning, aiming to evolve into a well-rounded software engineer who bridges the gap between 
+                "Since 2024, I've been actively shaping my professional identity through internships, personal projects, and
+                continuous learning, aiming to evolve into a well-rounded software engineer who bridges the gap between
                 technical innovation and user-centric design."
               </p>
             </motion.div>
 
             <motion.p variants={fadeUp} transition={{ ...sectionTransition, delay: 0.24 }}>
-              Currently, I am honing my skills as a Frontend Developer at Daraz, where I collaborate with cross-functional teams to 
-              improve user interfaces and deliver high-quality features. Alongside my work, I am exploring the intersection of design 
+              Currently, I am honing my skills as a Frontend Developer at Daraz, where I collaborate with cross-functional teams to
+              improve user interfaces and deliver high-quality features. Alongside my work, I am exploring the intersection of design
               and development, with a focus on creating accessible and engaging web applications.
             </motion.p>
 
             <motion.div variants={fadeUp} transition={{ ...sectionTransition, delay: 0.28 }} className="mt-8 pt-6 border-t border-primary/50 flex flex-wrap gap-x-6 gap-y-2 text-sm text-dimText text-left">
               <span>
-               <FaBirthdayCake className="inline text-accent mr-2" /> 
-               <span className="font-semibold text-lightText">Born:</span> 24 March 2002
+                <FaBirthdayCake className="inline text-accent mr-2" />
+                <span className="font-semibold text-lightText">Born:</span> 24 March 2002
               </span>
               <span>
-               <FaMapMarkerAlt className="inline text-accent mr-2" /> 
-               <span className="font-semibold text-lightText">Location:</span> {personalInfo.location}
+                <FaMapMarkerAlt className="inline text-accent mr-2" />
+                <span className="font-semibold text-lightText">Location:</span> {personalInfo.location}
               </span>
               <span>
-               <FaGraduationCap className="inline text-accent mr-2" /> 
-               <span className="font-semibold text-lightText">Education:</span> {personalInfo.education}
+                <FaGraduationCap className="inline text-accent mr-2" />
+                <span className="font-semibold text-lightText">Education:</span> {personalInfo.education}
               </span>
-          </motion.div>
+            </motion.div>
           </div>
         </motion.div>
       </div>

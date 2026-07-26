@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
-import { 
-  SiReact, SiNodedotjs, SiTailwindcss, SiPython, 
-  SiJavascript, SiTypescript, SiMysql, SiMongodb, SiGit, 
-  SiDocker, SiFigma, SiVite, SiSpringboot, SiPostman 
+import {
+  SiReact, SiNodedotjs, SiTailwindcss, SiPython,
+  SiJavascript, SiTypescript, SiMysql, SiMongodb, SiGit,
+  SiDocker, SiFigma, SiVite, SiSpringboot, SiPostman
 } from 'react-icons/si';
 import { FaJava } from 'react-icons/fa';
 import AnimatedHeading from './AnimatedHeading';
@@ -35,11 +35,11 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="py-20 bg-primary">
+    <section id="skills" className="py-20 bg-secondary border-t border-white/5">
       <div className="container mx-auto px-6">
-         <div className="mb-14 text-center">
+        <div className="mb-14 text-center">
           <AnimatedHeading
-            subtitle="tool box"
+            subtitle="Toolbox"
             direction="split"
             fromLeftText="Skills &"
             fromRightText="Technologies"
@@ -59,8 +59,8 @@ const Skills = () => {
         {Object.entries(skillCategories).map(([category, skills], categoryIndex) => (
           <motion.div key={categoryIndex} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={staggerContainer} className="mb-12">
             <motion.h3 variants={fadeUp} transition={{ ...sectionTransition, delay: categoryIndex * 0.05 }} className="text-xl font-semibold text-accent mb-6 text-center">{category}</motion.h3>
-            
-            
+
+
             <div className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">
               {skills.map((skill, index) => {
                 const Icon = iconMap[skill];

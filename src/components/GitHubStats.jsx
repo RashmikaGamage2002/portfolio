@@ -10,9 +10,9 @@ const GitHubStats = () => {
   const username = useMemo(() => 'RashmikaGamage2002', []);
 
   return (
-    <section id="githubstats" className="py-32 bg-primary border-t border-borderMuted">
+    <section id="githubstats" className="py-32 bg-secondary border-t border-white/5">
       <div className="container mx-auto px-6 lg:px-16">
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -20,9 +20,9 @@ const GitHubStats = () => {
           transition={{ duration: 0.7, ease: [0.77, 0, 0.18, 1] }}
           className="text-center mb-16"
         >
-          
+
           <AnimatedHeading
-            subtitle="contribution"
+            subtitle="Git Contribution"
             direction="split"
             fromLeftText="GIT"
             fromRightText="Activity"
@@ -38,10 +38,10 @@ const GitHubStats = () => {
         </motion.div>
 
         <div className="bg-cardBg border border-borderMuted rounded-2xl p-8 max-w-5xl mx-auto flex justify-center overflow-x-auto">
-          <GitHubCalendarComponent 
-            username={username} 
-            blockSize={14} 
-            blockMargin={5} 
+          <GitHubCalendarComponent
+            username={username}
+            blockSize={14}
+            blockMargin={5}
             fontSize={14}
             colorScheme="dark"
           />
