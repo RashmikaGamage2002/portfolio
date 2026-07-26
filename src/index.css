@@ -24,6 +24,19 @@
     -webkit-overflow-scrolling: touch;
   }
 
+  /* Custom Cursor Rules for Fine Pointer Devices (Desktop) */
+  @media (pointer: fine) {
+    body:not(.use-native-cursor),
+    body:not(.use-native-cursor) button,
+    body:not(.use-native-cursor) a,
+    body:not(.use-native-cursor) input,
+    body:not(.use-native-cursor) select,
+    body:not(.use-native-cursor) textarea,
+    body:not(.use-native-cursor) [role="button"] {
+      cursor: none !important;
+    }
+  }
+
   #root {
     isolation: isolate;
   }

@@ -1,4 +1,3 @@
-// src/components/Projects.jsx
 import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaFigma } from 'react-icons/fa';

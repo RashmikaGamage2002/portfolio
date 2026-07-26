@@ -10,12 +10,16 @@ import GitHubStats from './components/GitHubStats';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
+import GlassLensCursor from './components/GlassLensCursor';
 
 function App() {
   const { scrollYProgress } = useScroll();
 
   return (
     <div className="bg-primary">
+      {/* 3D Glass Lens Refraction Cursor */}
+      <GlassLensCursor />
+
       {/* Scroll Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-0.5 bg-accent z-[9999]"
