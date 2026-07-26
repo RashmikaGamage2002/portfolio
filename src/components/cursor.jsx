@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const GlassLensCursor = () => {
+const Cursor = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoverType, setHoverType] = useState('default');
   const [isClicked, setIsClicked] = useState(false);
@@ -254,4 +254,4 @@ const GlassLensCursor = () => {
   );
 };
 
-export default GlassLensCursor;
+export default Cursor;
