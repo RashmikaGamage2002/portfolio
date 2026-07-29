@@ -22,6 +22,8 @@ const AnimatedHeading = ({
   fromLeftText = '',
   fromRightText = '',
   accentColor = 'text-accent',
+  align = 'center', // 'left', 'center', 'right'
+  textSize = 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl',
 }) => {
   // For 'split' mode: split text into two parts
   const leftChars = fromLeftText ? splitText(fromLeftText) : [];
@@ -137,7 +139,15 @@ const AnimatedHeading = ({
     }
   };
 
-  const variants = getVariants();
+  const effectiveAlign = align !== 'center' ? align : (direction === 'left' ? 'left' : direction === 'right' ? 'right' : 'center');
+  const justifyClass =
+    effectiveAlign === 'left' ? 'justify-start' :
+      effectiveAlign === 'right' ? 'justify-end' :
+        'justify-center';
+  const subtitleAlignClass =
+    effectiveAlign === 'left' ? 'text-left' :
+      effectiveAlign === 'right' ? 'text-right' :
+        'text-center';
 
   // Render split mode (left + right parts)
   if (direction === 'split' && fromLeftText && fromRightText) {
@@ -150,7 +160,7 @@ const AnimatedHeading = ({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.77, 0, 0.18, 1] }}
-            className={`text-xs uppercase tracking-[0.5em] text-accent mb-3 ${subtitleClassName}`}
+            className={`text-xs uppercase tracking-[0.5em] text-accent mb-3 ${subtitleAlignClass} ${subtitleClassName}`}
           >
             {subtitle}
           </motion.p>
@@ -160,16 +170,16 @@ const AnimatedHeading = ({
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="flex flex-wrap justify-center items-center"
+          className={`flex flex-wrap ${justifyClass} items-center`}
         >
           {/* Left Part */}
-          <div className="flex flex-wrap justify-center">
+          <div className={`flex flex-nowrap ${justifyClass}`}>
             {leftChars.map(({ char, index }) => (
               <motion.span
                 key={`left-${index}`}
                 custom={index}
                 variants={leftCharVariants}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-accent inline-block"
+                className={`${textSize} font-bold text-accent inline-block`}
                 style={{
                   whiteSpace: char === '\u00A0' ? 'pre' : 'normal',
                 }}
@@ -180,18 +190,18 @@ const AnimatedHeading = ({
           </div>
 
           {/* Space between parts */}
-          <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white inline-block w-2 sm:w-3">
+          <span className={`${textSize} font-bold text-white inline-block w-2 sm:w-3`}>
             &nbsp;
           </span>
 
           {/* Right Part */}
-          <div className="flex flex-wrap justify-center">
+          <div className={`flex flex-nowrap ${justifyClass}`}>
             {rightChars.map(({ char, index }) => (
               <motion.span
                 key={`right-${index}`}
                 custom={index}
                 variants={rightCharVariants}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white inline-block"
+                className={`${textSize} font-bold text-white inline-block`}
                 style={{
                   whiteSpace: char === '\u00A0' ? 'pre' : 'normal',
                 }}
@@ -214,7 +224,7 @@ const AnimatedHeading = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.77, 0, 0.18, 1] }}
-          className={`text-xs uppercase tracking-[0.5em] text-accent mb-3 ${subtitleClassName}`}
+          className={`text-xs uppercase tracking-[0.5em] text-accent mb-3 ${subtitleAlignClass} ${subtitleClassName}`}
         >
           {subtitle}
         </motion.p>
@@ -224,18 +234,14 @@ const AnimatedHeading = ({
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
-        className={`flex flex-wrap ${
-          direction === 'left' ? 'justify-start' : 
-          direction === 'right' ? 'justify-end' : 
-          'justify-center'
-        }`}
+        className={`flex flex-wrap ${justifyClass}`}
       >
         {allChars.map(({ char, index }) => (
           <motion.span
             key={index}
             custom={index}
             variants={variants}
-            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white inline-block ${accentColor}`}
+            className={`${textSize} font-bold text-white inline-block ${accentColor}`}
             style={{
               whiteSpace: char === '\u00A0' ? 'pre' : 'normal',
             }}
