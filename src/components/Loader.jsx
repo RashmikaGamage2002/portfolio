@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { personalInfo } from '../data/data';
 
 const EXIT_DURATION = 0.9;
-const FALLBACK_DURATION = 1000;
+const FALLBACK_DURATION = 8000;
+const VIDEO_PLAYBACK_RATE = 2.0; // 2.0 means 2x speed. Change this to 1.5 for 1.5x speed, etc.
 
 const Loader = ({ onComplete }) => {
     const [isVisible, setIsVisible] = useState(true);
@@ -56,16 +57,18 @@ const Loader = ({ onComplete }) => {
 
     // ── Fallback timer ──
     useEffect(() => {
+        if (videoDuration) return;
         const fallback = setTimeout(() => {
             if (!dismissedRef.current) dismiss();
         }, FALLBACK_DURATION + EXIT_DURATION * 1000 + 300);
         return () => clearTimeout(fallback);
-    }, [dismiss]);
+    }, [dismiss, videoDuration]);
 
     const handleLoadedMetadata = () => {
         const vid = videoRef.current;
         if (vid && vid.duration && isFinite(vid.duration)) {
-            setVideoDuration(vid.duration);
+            vid.playbackRate = VIDEO_PLAYBACK_RATE;
+            setVideoDuration(vid.duration / VIDEO_PLAYBACK_RATE);
         }
     };
 
@@ -102,6 +105,20 @@ const Loader = ({ onComplete }) => {
                         transition: { duration: EXIT_DURATION, ease: [0.77, 0, 0.18, 1] },
                     }}
                 >
+
+                    {/* ── Background Video ── */}
+                    <video
+                        ref={videoRef}
+                        src="/loader-bg.mp4"
+                        autoPlay
+                        muted
+                        playsInline
+                        onLoadedMetadata={handleLoadedMetadata}
+                        onEnded={() => {
+                            if (!dismissedRef.current) dismiss();
+                        }}
+                        className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none"
+                    />
 
                     {/* ── Ambient Glow ── */}
                     <div
