@@ -10,14 +10,14 @@ const Hero = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
   const roles = ['Software Engineer', 'Frontend Developer', 'UI/UX Enthusiast'];
-  
+
   useEffect(() => {
     const handleType = () => {
       const currentRole = roles[loopNum % roles.length];
-      const updatedText = isDeleting 
+      const updatedText = isDeleting
         ? currentRole.substring(0, text.length - 1)
         : currentRole.substring(0, text.length + 1);
-      
+
       setText(updatedText);
 
       if (!isDeleting && updatedText === currentRole) {
@@ -33,21 +33,20 @@ const Hero = () => {
   }, [text, isDeleting, loopNum]);
 
   return (
-    <section 
-      id="home" 
+    <section
+      id="home"
       className="min-h-screen relative overflow-hidden bg-primary"
     >
-      {/* Hero blur background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/10 blur-3xl" />
-        <div className="absolute -bottom-16 right-10 h-80 w-80 rounded-full bg-blue-500/10 blur-3xl" />
+      {/* Hero background with blue radials */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[50vh] w-[50vh] md:h-[70vh] md:w-[70vh] rounded-full bg-blue-500/20 blur-[100px]" />
         <div className="absolute inset-0">
-          <img 
-            src="/hero-bg.jpg" 
+          <img
+            src="/hero-bg.png"
             alt="Background"
-            className="w-full h-full object-cover "
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/80 to-primary/95" />
+          <div className="absolute inset-0 bg-primary/30" />
         </div>
       </div>
 
@@ -60,7 +59,7 @@ const Hero = () => {
           transition={{ delayChildren: 0.1, staggerChildren: 0.08 }}
           className="text-center"
         >
-          <div className="mx-auto max-w-4xl">                      
+          <div className="mx-auto max-w-4xl">
             <motion.p
               className="text-[12px] uppercase tracking-[0.4em] text-gray-500 mb-4"
               variants={fadeIn}
@@ -69,17 +68,17 @@ const Hero = () => {
               Hi, I'm
             </motion.p>
 
-            <motion.h1 
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[0.95] tracking-tight"
+            <motion.h1
+              className="text-6xl sm:text-7xl md:text-8xl lg:text-[8rem] font-black uppercase leading-[0.9] tracking-tighter"
               variants={fadeUp}
               transition={{ delay: 0.25, duration: 0.8, ease: [0.77, 0, 0.18, 1] }}
             >
-              Rashmika
-              
-              <span className="text-accent">Gamage</span>
+              <span className="text-[#E6DACE]">Rashmika</span>
+              <br />
+              <span className="text-transparent" style={{ WebkitTextStroke: '2px #E6DACE' }}>Gamage</span>
             </motion.h1>
 
-            <motion.div 
+            <motion.div
               className="mt-5 flex flex-wrap items-center justify-center gap-3"
               variants={fadeIn}
               transition={{ delay: 0.35, duration: 0.6, ease: [0.77, 0, 0.18, 1] }}
@@ -93,7 +92,7 @@ const Hero = () => {
               </span>
             </motion.div>
 
-            <motion.p 
+            <motion.p
               className="mx-auto mt-6 max-w-2xl text-sm sm:text-base font-light leading-relaxed text-gray-400 px-4"
               variants={fadeUp}
               transition={{ delay: 0.45, duration: 0.6, ease: [0.77, 0, 0.18, 1] }}
@@ -102,7 +101,7 @@ const Hero = () => {
               building full-stack applications and creating intuitive user experiences.
             </motion.p>
 
-            <motion.div 
+            <motion.div
               className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
               variants={fadeUp}
               transition={{ delay: 0.55, duration: 0.6, ease: [0.77, 0, 0.18, 1] }}
@@ -117,7 +116,7 @@ const Hero = () => {
                 <FaDownload className="w-4 h-4" />
                 Download CV
               </motion.a>
-              
+
               <motion.a
                 href="#projects"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-9 py-4 text-sm font-medium text-white transition-all hover:border-accent/30 hover:text-accent"
@@ -128,7 +127,7 @@ const Hero = () => {
               </motion.a>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               className="flex justify-center gap-6 mt-10"
               variants={fadeIn}
               transition={{ delay: 0.7, duration: 0.6, ease: [0.77, 0, 0.18, 1] }}
