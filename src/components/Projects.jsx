@@ -159,7 +159,7 @@ const Projects = () => {
 
                   <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-500">
                     {project.github && (
-                      < motion.a
+                      <motion.a
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
