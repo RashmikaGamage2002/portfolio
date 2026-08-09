@@ -87,7 +87,7 @@ const Navbar = () => {
               <button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
-                className="relative px-4 py-1.5 text-sm font-medium text-white-400 transition-colors hover:text-accent"
+                className="relative px-4 py-1.5 text-sm font-medium text-gray-400 transition-colors hover:text-accent"
               >
                 <span className={isActive ? 'text-accent' : ''}>{link.label}</span>
                 {isActive && (

@@ -240,7 +240,7 @@ const AnimatedHeading = ({
           <motion.span
             key={index}
             custom={index}
-            variants={variants}
+            variants={getVariants()}
             className={`${textSize} font-bold text-white inline-block ${accentColor}`}
             style={{
               whiteSpace: char === '\u00A0' ? 'pre' : 'normal',

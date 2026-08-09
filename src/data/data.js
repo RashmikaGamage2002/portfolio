@@ -1,6 +1,3 @@
-import { FiFigma } from "react-icons/fi";
-import { PiFigmaLogo } from "react-icons/pi";
-
 export const personalInfo = {
   name: "Rashmika Gamage",
   title: "Software Engineer",
@@ -16,9 +13,9 @@ export const projects = [
     id: 1,
     title: "My Portfolio Website",
     description: "A personal portfolio website showcasing my skills, projects, and experience as a software engineer",
-    tech: ['React', 'Vite', 'Tailwind CSS', 'Socket.io'],
-    github: "https://github.com/yourusername/auction-system",
-    live: "https://auction-system.vercel.app",
+    tech: ['React', 'Vite', 'Tailwind CSS'],
+    github: "https://github.com/RashmikaGamage2002",
+    live: "#",
     image: "/portfolio.png",
   },
   {
@@ -54,14 +51,12 @@ export const experience = [
     period: "2022 — 2023",
     description:
       "Managed daily hub operations, supervised staff, monitored shipment processing, and ensured accurate order handling for efficient and timely deliveries.",
-  },]
+  }];
 
-  
 export const certifications = [
   {
     name: "Software Engineering",
     issuer: "Alison",
     link: "#",
   },
-  // Add more certifications
 ];

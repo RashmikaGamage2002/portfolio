@@ -1,13 +1,11 @@
-import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import GitHubCalendarModule from 'react-github-calendar';
 import AnimatedHeading from './AnimatedHeading';
-import { fadeUp, cardReveal, staggerContainer, lineReveal, sectionTransition } from '../animationVariants';
 
 const GitHubCalendarComponent = GitHubCalendarModule?.default ?? GitHubCalendarModule;
 
 const GitHubStats = () => {
-  const username = useMemo(() => 'RashmikaGamage2002', []);
+  const username = 'RashmikaGamage2002';
 
   return (
     <section id="githubstats" className="py-32 bg-secondary border-t border-white/5">
