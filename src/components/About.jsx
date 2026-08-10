@@ -69,25 +69,8 @@ const About = () => {
             </motion.div>
 
             <motion.p variants={fadeUp} transition={{ ...sectionTransition, delay: 0.24 }}>
-              Currently, I am honing my skills as a Frontend Developer at Daraz, where I collaborate with cross-functional teams to
-              improve user interfaces and deliver high-quality features. Alongside my work, I am exploring the intersection of design
-              and development, with a focus on creating accessible and engaging web applications.
+              Currently, I am pursuing my BSc (Hons) in Software Engineering at NSBM Green University, continuously refining my skills through academic work, personal projects, and hands-on exploration. My focus lies at the intersection of frontend development and UI/UX design, where I aim to create modern, accessible, and engaging digital experiences while growing into a well-rounded software engineer.
             </motion.p>
-
-            <motion.div variants={fadeUp} transition={{ ...sectionTransition, delay: 0.28 }} className="mt-8 pt-6 border-t border-primary/50 flex flex-wrap gap-x-6 gap-y-2 text-sm text-dimText text-left">
-              <span>
-                <FaBirthdayCake className="inline text-accent mr-2" />
-                <span className="font-semibold text-lightText">Born:</span> 24 March 2002
-              </span>
-              <span>
-                <FaMapMarkerAlt className="inline text-accent mr-2" />
-                <span className="font-semibold text-lightText">Location:</span> {personalInfo.location}
-              </span>
-              <span>
-                <FaGraduationCap className="inline text-accent mr-2" />
-                <span className="font-semibold text-lightText">Education:</span> {personalInfo.education}
-              </span>
-            </motion.div>
           </div>
         </motion.div>
       </div>

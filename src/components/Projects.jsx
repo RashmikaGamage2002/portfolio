@@ -1,165 +1,208 @@
-import { useRef, useEffect, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+// src/components/Projects.jsx
+import { useRef, useEffect } from 'react';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaFigma } from 'react-icons/fa';
 import { projects } from '../data/data';
 import AnimatedHeading from './AnimatedHeading';
-import { fadeUp, cardReveal, staggerContainer, lineReveal, sectionTransition } from '../animationVariants';
+
+const blobVariants = {
+  floatA: { x: [0, 40, -20, 0], y: [0, -30, 20, 0], transition: { duration: 14, repeat: Infinity, ease: 'easeInOut' } },
+  floatB: { x: [0, -30, 30, 0], y: [0, 25, -15, 0], transition: { duration: 18, repeat: Infinity, ease: 'easeInOut' } },
+  floatC: { x: [0, 25, -25, 0], y: [0, 20, -30, 0], transition: { duration: 16, repeat: Infinity, ease: 'easeInOut' } },
+};
+
+const scanline = {
+  hidden: { scaleY: 0, opacity: 0 },
+  visible: { scaleY: 1, opacity: 1, transition: { duration: 1.2, ease: [0.77, 0, 0.18, 1] } },
+};
 
 const Projects = () => {
-  const containerRef = useRef(null);
-  const [dimensions, setDimensions] = useState({
-    viewportWidth: 0,
-    headerWidth: 0,
-    cardWidth: 0,
-    gap: 0,
-    maxTranslation: 0,
-  });
+  const sectionRef = useRef(null);
 
-  useEffect(() => {
-    const calculate = () => {
-      const vw = window.innerWidth;
-      let cardWidth, gap, headerWidth;
+  // ─── Card variants based on parity ──────────────────────────────────────────
+  const getVariants = (index) => {
+    const isEven = index % 2 === 0;
 
-      if (vw >= 1024) {
-        cardWidth = 380;
-        gap = 64;
-        headerWidth = 450;
-      } else if (vw >= 768) {
-        cardWidth = 340;
-        gap = 48;
-        headerWidth = 380;
-      } else if (vw >= 640) {
-        cardWidth = 300;
-        gap = 32;
-        headerWidth = 320;
-      } else {
-        cardWidth = 280;
-        gap = 32;
-        headerWidth = 280;
-      }
-
-      const totalCards = projects.length;
-      const totalContentWidth = headerWidth + (totalCards * (cardWidth + gap)) - gap;
-
-      let maxTranslation = 0;
-      if (totalContentWidth > vw) {
-        const lastCardCenter = headerWidth + (totalCards - 1) * (cardWidth + gap) + cardWidth / 2;
-        maxTranslation = Math.max(0, lastCardCenter - vw / 2);
-      }
-
-      setDimensions({
-        viewportWidth: vw,
-        headerWidth,
-        cardWidth,
-        gap,
-        maxTranslation,
-      });
+    return {
+      // Image animation: scale + reveal (different direction based on side)
+      image: {
+        hidden: {
+          opacity: 0,
+          scale: 0.85,
+          x: isEven ? -60 : 60,
+        },
+        visible: {
+          opacity: 1,
+          scale: 1,
+          x: 0,
+          transition: {
+            type: 'spring',
+            stiffness: 70,
+            damping: 20,
+            duration: 0.9,
+          },
+        },
+      },
+      // Text: horizontal slide from opposite direction
+      text: {
+        hidden: {
+          opacity: 0,
+          x: isEven ? 60 : -60,
+        },
+        visible: {
+          opacity: 1,
+          x: 0,
+          transition: {
+            type: 'spring',
+            stiffness: 80,
+            damping: 20,
+            duration: 0.8,
+            delay: 0.1,
+          },
+        },
+      },
+      // Number: vertical movement (slide up/down)
+      number: {
+        hidden: {
+          opacity: 0,
+          y: isEven ? -40 : 40,
+        },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: {
+            type: 'spring',
+            stiffness: 100,
+            damping: 15,
+            duration: 0.6,
+            delay: 0.2,
+          },
+        },
+      },
     };
-
-    calculate();
-    window.addEventListener('resize', calculate);
-    return () => window.removeEventListener('resize', calculate);
-  }, [projects.length]);
-
-  const { viewportWidth, headerWidth, cardWidth, gap, maxTranslation } = dimensions;
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end'],
-  });
-
-  const x = useTransform(scrollYProgress, [0, 1], [0, -maxTranslation]);
-
-  const sectionHeight = maxTranslation > 0
-    ? `${Math.ceil((maxTranslation / viewportWidth) * 100) + 100}vh`
-    : '100vh';
-
-  const cardScales = projects.map((_, index) => {
-    const cardCenterOffset = headerWidth + index * (cardWidth + gap) + cardWidth / 2;
-
-    return useTransform(scrollYProgress, (progress) => {
-      const currentX = -maxTranslation * progress;
-      const cardCenterInViewport = cardCenterOffset + currentX;
-      const distance = Math.abs(cardCenterInViewport - viewportWidth / 2);
-
-      const maxDist = viewportWidth * 0.6;
-      const normalized = Math.min(distance / maxDist, 1);
-      const scale = 1 + 0.15 * (1 - normalized * normalized);
-      return Math.min(Math.max(scale, 0.85), 1.15);
-    });
-  });
+  };
 
   return (
     <section
-      ref={containerRef}
+      ref={sectionRef}
       id="projects"
-      className="relative bg-primary border-t border-white/5"
-      style={{ height: sectionHeight }}
+      className="relative border-t border-white/5 py-24 sm:py-32"
     >
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        <motion.div
-          style={{ x }}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={staggerContainer}
-          transition={{ delayChildren: 0.08, staggerChildren: 0.07 }}
-          className="flex items-center gap-8 md:gap-12 lg:gap-16 px-6 md:px-10 lg:px-16"
-        >
-          {/* Header Section */}
-          <motion.div variants={fadeUp} transition={sectionTransition} className="w-[300px] sm:w-[360px] md:w-[440px] lg:w-[520px] flex-shrink-0">
-            <div className="mb-14 text-center">
-              <AnimatedHeading
-                subtitle="My Work"
-                direction="split"
-                fromLeftText="Featured"
-                fromRightText="Projects"
-                className="mb-4"
-                align="left"
-              />
+      {/* ─── Animated background blobs ─── */}
+      <motion.div className="pointer-events-none absolute top-10 left-10 h-72 w-72 rounded-full"
+        style={{ background: 'radial-gradient(circle, rgba(0,191,255,0.30) 0%, transparent 70%)', filter: 'blur(70px)' }}
+        variants={blobVariants} animate="floatA" />
+      <motion.div className="pointer-events-none absolute top-1/2 right-10 h-80 w-80 rounded-full"
+        style={{ background: 'radial-gradient(circle, rgba(37,99,235,0.25) 0%, transparent 70%)', filter: 'blur(80px)' }}
+        variants={blobVariants} animate="floatB" />
+      <motion.div className="pointer-events-none absolute bottom-10 left-1/3 h-64 w-64 rounded-full"
+        style={{ background: 'radial-gradient(circle, rgba(0,153,204,0.28) 0%, transparent 70%)', filter: 'blur(70px)' }}
+        variants={blobVariants} animate="floatC" />
 
-            </div>
-            <motion.p variants={fadeUp} transition={{ ...sectionTransition, delay: 0.12 }} className="text-dimText font-light mt-4 max-w-sm text-sm sm:text-base leading-relaxed">
-              A space for self-initiated products, prototypes, and creative systems
-              shaped by curiosity, code, and fast iteration.
-            </motion.p>
-            <motion.div variants={lineReveal} transition={{ duration: 0.7, delay: 0.2, ease: [0.77, 0, 0.18, 1] }} className="mt-6 flex items-center gap-3 text-dimText/40 text-xs uppercase tracking-[0.2em]">
-              <span>Scroll →</span>
-              <div className="w-16 h-px bg-dimText/20" />
-            </motion.div>
-          </motion.div>
+      {/* ─── Animated grid overlay ─── */}
+      <motion.div
+        className="pointer-events-none absolute inset-0 opacity-[0.05]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,191,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(0,191,255,0.6) 1px, transparent 1px)`,
+          backgroundSize: '60px 60px',
+        }}
+        animate={{ backgroundPosition: ['0px 0px', '60px 60px'] }}
+        transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
+      />
 
-          {/* Project Cards */}
+      <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
+
+        {/* ─── Heading ──────────────────────────────────────────────────────── */}
+        <div className="mb-16 text-center">
+          <AnimatedHeading
+            subtitle="My Work"
+            direction="split"
+            fromLeftText="Featured"
+            fromRightText="Projects"
+            className="mb-4"
+            align="center"
+          />
+          <p className="text-dimText font-light max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+            A space for self-initiated products, prototypes, and creative systems
+            shaped by curiosity, code, and fast iteration.
+          </p>
+          <div className="mt-4 flex justify-center">
+            <div className="w-16 h-px bg-accent/30" />
+          </div>
+        </div>
+
+        {/* ─── Cards ────────────────────────────────────────────────────────── */}
+        <div className="space-y-20 md:space-y-28">
           {projects.map((project, index) => {
-            const scale = cardScales[index];
+            const isEven = index % 2 === 0;
+            const cardRef = useRef(null);
+            const isInView = useInView(cardRef, {
+              once: true,
+              amount: 0.2,
+              margin: '-50px',
+            });
+
+            // ─── Scroll-driven blur & scale for each card ──────────────────
+            const { scrollYProgress } = useScroll({
+              target: cardRef,
+              offset: ['start end', 'end start'],
+            });
+            const cardBlur = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [8, 0, 0, 8]);
+            const cardScale = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0.96, 1, 1, 0.96]);
+
+            const variants = getVariants(index);
+
             return (
               <motion.div
                 key={project.id}
-                variants={cardReveal}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{ duration: 0.55, delay: index * 0.06, ease: [0.77, 0, 0.18, 1] }}
-                style={{ scale }}
-                className="group relative w-[280px] sm:w-[300px] md:w-[340px] lg:w-[380px] flex-shrink-0 bg-cardBg rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-accent/10 transition-shadow duration-500"
+                ref={cardRef}
+                style={{
+                  filter: isInView ? 'blur(0px)' : `blur(${cardBlur}px)`,
+                  scale: isInView ? 1 : cardScale,
+                }}
+                className={`group relative bg-cardBg rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-accent/20 transition-shadow duration-700 border border-white/5 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'
+                  } flex flex-col`}
               >
-                <div className="relative overflow-hidden h-48 sm:h-52 md:h-56 lg:h-64">
+                {/* ─── Animated blue border glow ───────────────────────── */}
+                <span className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(0,191,255,0.6), rgba(37,99,235,0.4), rgba(0,153,204,0.6))',
+                    backgroundSize: '200% 200%',
+                  }}>
+                  <motion.span
+                    className="absolute inset-[1px] rounded-2xl bg-cardBg"
+                    animate={{ backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'] }}
+                    transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+                    style={{ backgroundImage: 'linear-gradient(135deg, rgba(0,191,255,0.0), rgba(0,153,204,0.0))' }}
+                  />
+                </span>
+                <motion.span
+                  className="pointer-events-none absolute left-0 top-0 h-full w-[2px] origin-top bg-gradient-to-b from-accent via-blue-500 to-transparent opacity-0 group-hover:opacity-100"
+                  variants={scanline}
+                  initial="hidden"
+                  whileInView="visible"
+                />
+
+                {/* ─── Image ──────────────────────────────────────────────── */}
+                <motion.div
+                  variants={variants.image}
+                  initial="hidden"
+                  animate={isInView ? 'visible' : 'hidden'}
+                  className="relative md:w-1/2 aspect-[4/3] md:aspect-auto md:min-h-[320px] overflow-hidden"
+                >
                   <motion.img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover"
-                    whileHover={{ scale: 1.08 }}
-                    transition={{ duration: 0.7, ease: [0.77, 0, 0.18, 1] }}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-hover:rotate-0.5"
+                    whileHover={{ scale: 1.05, rotate: 0.5 }}
+                    transition={{ type: 'tween', duration: 0.4 }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                  <span className="absolute top-4 right-4 text-sm font-light text-white/20">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-
+                  {/* Overlay links */}
                   <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-500">
                     {project.github && (
-                      < motion.a
+                      <motion.a
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -195,30 +238,87 @@ const Projects = () => {
                       </motion.a>
                     )}
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="p-4 sm:p-5 md:p-6">
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-lightText mb-2 group-hover:text-accent transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-dimText text-xs sm:text-sm mb-3 md:mb-4 leading-relaxed line-clamp-2">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                    {project.tech.map((tech, idx) => (
+                {/* ─── Content ────────────────────────────────────────────── */}
+                <motion.div
+                  variants={variants.text}
+                  initial="hidden"
+                  animate={isInView ? 'visible' : 'hidden'}
+                  className="flex-1 p-6 md:p-8 flex flex-col justify-center relative"
+                >
+                  {/* Project Number */}
+                  <motion.div
+                    variants={variants.number}
+                    initial="hidden"
+                    animate={isInView ? 'visible' : 'hidden'}
+                    className="absolute top-4 right-4 md:top-6 md:right-6 text-6xl font-bold text-white/5 select-none pointer-events-none"
+                  >
+                    {String(index + 1).padStart(2, '0')}
+                  </motion.div>
+
+                  <div className="flex flex-wrap items-center gap-2 mb-3">
+                    {project.tech.slice(0, 3).map((tech, idx) => (
                       <span
                         key={idx}
-                        className="px-2 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium bg-accent/10 text-accent rounded-full border border-accent/20"
+                        className="px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full border border-accent/20"
                       >
                         {tech}
                       </span>
                     ))}
+                    {project.tech.length > 3 && (
+                      <span className="text-xs text-dimText/50">+{project.tech.length - 3}</span>
+                    )}
                   </div>
-                </div>
+
+                  <h3 className="text-2xl sm:text-3xl font-bold text-lightText group-hover:text-accent transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="mt-3 text-dimText text-sm leading-relaxed max-w-xl">
+                    {project.description}
+                  </p>
+
+                  {/* Action buttons */}
+                  <div className="mt-5 flex flex-wrap gap-4">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm text-dimText hover:text-accent transition-colors"
+                      >
+                        <FaGithub className="text-lg" />
+                        <span>Source</span>
+                      </a>
+                    )}
+                    {project.figma && (
+                      <a
+                        href={project.figma}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm text-dimText hover:text-accent transition-colors"
+                      >
+                        <FaFigma className="text-lg" />
+                        <span>Figma</span>
+                      </a>
+                    )}
+                    {project.live && (
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm text-dimText hover:text-accent transition-colors"
+                      >
+                        <FaExternalLinkAlt className="text-lg" />
+                        <span>Live Demo</span>
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
               </motion.div>
             );
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -12,7 +12,7 @@ const Footer = () => {
       className="py-10 bg-secondary border-t border-white/10"
     >
       <div className="container mx-auto px-6 text-center text-dimText">
-        <p>© {new Date().getFullYear()} Rashmika Gamage. Built with React, Vite, and Tailwind CSS.</p>
+        <p>© {new Date().getFullYear()} <br />Made by Rashmika Gamage.<br /> FROM IDEAS TO INTERFACES.</p>
       </div>
     </motion.footer>
   );

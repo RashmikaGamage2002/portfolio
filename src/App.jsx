@@ -62,8 +62,7 @@ function App() {
         <Skills />
         <Projects />
         <Experience />
-        <Certifications />
-        <GitHubStats />
+
         <Contact />
         <Footer />
       </motion.div>
