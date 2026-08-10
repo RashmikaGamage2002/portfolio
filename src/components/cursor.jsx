@@ -124,7 +124,7 @@ const Cursor = () => {
   } else if (hoverType === 'text') {
     lensSizeClasses = 'w-16 h-16 -ml-8 -mt-8'; // 96px for text & fonts
   } else if (hoverType === 'image') {
-    lensSizeClasses = 'w-18 h-18 -ml-9 -mt-9'; // 128px for images
+    lensSizeClasses = 'w-20 h-20 -ml-10 -mt-10'; // 80px for images
   }
 
   return (

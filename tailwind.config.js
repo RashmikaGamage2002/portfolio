@@ -15,6 +15,7 @@ export default {
         lightText: '#FFFFFF',
         dimText: '#A0A0A0',
         cardBg: '#1A1A1A',
+        borderMuted: 'rgba(255, 255, 255, 0.05)',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],

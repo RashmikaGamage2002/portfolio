@@ -2,7 +2,6 @@
 import { motion } from 'framer-motion';
 import { certifications } from '../data/data';
 import AnimatedHeading from './AnimatedHeading';
-import { fadeUp, cardReveal, staggerContainer, lineReveal, sectionTransition } from '../animationVariants';
 
 const Certifications = () => {
   return (

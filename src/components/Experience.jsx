@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import { experience } from '../data/data';
 import AnimatedHeading from './AnimatedHeading';
-import { fadeUp, cardReveal, staggerContainer, lineReveal, sectionTransition } from '../animationVariants';
+import { fadeUp, staggerContainer, sectionTransition } from '../animationVariants';
 
 const Experience = () => {
   const ACCENT = '#00BFFF';
