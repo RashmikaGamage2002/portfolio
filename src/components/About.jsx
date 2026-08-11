@@ -7,7 +7,7 @@ import { fadeUp, lineReveal, cardReveal, staggerContainer, sectionTransition } f
 const About = () => {
   return (
     <section id="about" className="relative min-h-screen py-20 overflow-hidden">
-      {/* ─── Background Layer (Desktop Only) ─────────────────────── */}
+
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden hidden md:block">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -19,7 +19,7 @@ const About = () => {
         <div className="absolute inset-0 "></div>
       </div>
 
-      {/* Content - positioned on top of background */}
+
       <div className="relative z-10 container mx-auto px-6 max-w-7xl">
         <motion.div
           initial="hidden"
@@ -29,7 +29,7 @@ const About = () => {
           transition={{ delayChildren: 0.08, staggerChildren: 0.07 }}
           className="px-4 md:pl-[10px] md:pr-[60px]"
         >
-          {/* Heading */}
+
           <AnimatedHeading
             subtitle="Who I Am"
             direction="split"
@@ -41,7 +41,7 @@ const About = () => {
 
           <motion.div variants={lineReveal} transition={{ duration: 0.7, delay: 0.2, ease: [0.77, 0, 0.18, 1] }} className="w-16 h-1 bg-accent rounded-full mx-auto md:mx-0 mb-8"></motion.div>
 
-          {/* Mobile 3D Circle Image */}
+
           <motion.div
             className="md:hidden flex justify-center mb-10 w-full pt-4"
             variants={fadeUp}
@@ -61,7 +61,7 @@ const About = () => {
                 ease: "easeInOut"
               }}
             >
-              {/* Halo / Glow Ring */}
+
               <motion.div
                 className="absolute inset-0 rounded-full border border-accent/40"
                 style={{ translateZ: -20 }}
@@ -75,7 +75,7 @@ const About = () => {
                 transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
               />
 
-              {/* Actual Image */}
+
               <motion.img
                 src="/about-bg2.png"
                 alt="About"
@@ -85,7 +85,7 @@ const About = () => {
             </motion.div>
           </motion.div>
 
-          {/* Content */}
+
           <div className="space-y-6 text-lightText/90 text-base md:text-lg leading-relaxed text-left max-w-3xl">
             <motion.p variants={fadeUp} transition={sectionTransition} className="text-xl font-semibold text-lightText">
               {personalInfo.name} is a passionate Software Engineering student with a growing career in full-stack development, UI/UX design, and digital problem-solving.

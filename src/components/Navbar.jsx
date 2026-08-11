@@ -16,7 +16,7 @@ const Navbar = () => {
     { id: 'contact', label: 'Contact' },
   ];
 
-  // Handle scroll effect
+
   useEffect(() => {
     let frameId = null;
 
@@ -39,7 +39,7 @@ const Navbar = () => {
     };
   }, []);
 
-  // Handle active section detection with IntersectionObserver
+
   useEffect(() => {
     const observers = [];
     NAV_LINKS.forEach(({ id }) => {
@@ -73,7 +73,7 @@ const Navbar = () => {
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className="fixed inset-x-0 top-4 z-50 flex justify-center px-4"
       >
-        {/* Desktop Navigation */}
+
         <nav
           className={`hidden md:flex items-center gap-1 rounded-full border px-5 py-4 transition-all duration-300 ${scrolled
             ? 'border-white/15 bg-primary/80 backdrop-blur-xl shadow-[0_10px_40px_-15px_rgba(0,191,255,0.25)]'
@@ -105,7 +105,7 @@ const Navbar = () => {
           })}
         </nav>
 
-        {/* Mobile Bar */}
+
         <div className="md:hidden flex w-full items-center justify-between rounded-full border border-white/10 bg-primary/60 backdrop-blur-xl px-4 py-3">
           <button
             aria-label="Toggle menu"
@@ -117,7 +117,7 @@ const Navbar = () => {
         </div>
       </motion.header>
 
-      {/* Mobile Drawer - Slides from Right */}
+
       <AnimatePresence>
         {open && (
           <motion.div

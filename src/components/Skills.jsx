@@ -48,7 +48,7 @@ const Skills = () => {
   return (
     <section id="skills" className="relative overflow-hidden py-20 border-t border-white/5">
 
-      {/* ─── Animated background blobs ─── */}
+
       <motion.div className="pointer-events-none absolute top-10 right-10 h-80 w-80 rounded-full"
         style={{ background: 'radial-gradient(circle, rgba(0,191,255,0.32) 0%, transparent 70%)', filter: 'blur(80px)' }}
         variants={blobVariants} animate="floatA" />
@@ -59,7 +59,7 @@ const Skills = () => {
         style={{ background: 'radial-gradient(circle, rgba(0,153,204,0.30) 0%, transparent 70%)', filter: 'blur(70px)' }}
         variants={blobVariants} animate="floatC" />
 
-      {/* ─── Rotating ring decoration ─── */}
+
       <motion.div
         className="pointer-events-none absolute -bottom-32 -right-32 h-96 w-96 rounded-full border border-accent/15"
         animate={{ rotate: 360 }}
@@ -116,7 +116,7 @@ const Skills = () => {
                     whileHover={{ y: -8, scale: 1.04 }}
                     className="group relative bg-secondary/80 p-6 rounded-xl text-center hover:shadow-xl hover:shadow-accent/30 transition-all duration-300 border border-white/5 hover:border-accent/40 w-[150px] flex-shrink-0 overflow-hidden"
                   >
-                    {/* Rotating conic glow on hover */}
+
                     <span className="pointer-events-none absolute -inset-1 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                       style={{
                         background: 'conic-gradient(from 0deg, rgba(0,191,255,0.0), rgba(0,191,255,0.35), rgba(37,99,235,0.35), rgba(0,153,204,0.35), rgba(0,191,255,0.0))',

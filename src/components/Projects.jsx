@@ -1,4 +1,4 @@
-// src/components/Projects.jsx
+
 import { useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaFigma } from 'react-icons/fa';
@@ -14,12 +14,12 @@ const scanline = {
 const Projects = () => {
   const sectionRef = useRef(null);
 
-  // ─── Card variants based on parity ──────────────────────────────────────────
+
   const getVariants = (index) => {
     const isEven = index % 2 === 0;
 
     return {
-      // Image animation: scale + reveal (different direction based on side)
+
       image: {
         hidden: {
           opacity: 0,
@@ -38,7 +38,7 @@ const Projects = () => {
           },
         },
       },
-      // Text: horizontal slide from opposite direction
+
       text: {
         hidden: {
           opacity: 0,
@@ -56,7 +56,7 @@ const Projects = () => {
           },
         },
       },
-      // Number: vertical movement (slide up/down)
+
       number: {
         hidden: {
           opacity: 0,
@@ -85,7 +85,7 @@ const Projects = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
 
-        {/* ─── Heading ──────────────────────────────────────────────────────── */}
+
         <div className="mb-16 text-center">
           <AnimatedHeading
             subtitle="My Work"
@@ -106,7 +106,7 @@ const Projects = () => {
           />
         </div>
 
-        {/* ─── Cards ────────────────────────────────────────────────────────── */}
+
         <div className="space-y-20 md:space-y-28">
           {projects.map((project, index) => {
             const isEven = index % 2 === 0;
@@ -117,7 +117,7 @@ const Projects = () => {
               margin: '-50px',
             });
 
-            // ─── Scroll-driven blur & scale for each card ──────────────────
+
             const { scrollYProgress } = useScroll({
               target: cardRef,
               offset: ['start end', 'end start'],
@@ -138,7 +138,7 @@ const Projects = () => {
                 className={`group relative bg-cardBg rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-accent/20 transition-shadow duration-700 border border-white/5 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'
                   } flex flex-col`}
               >
-                {/* ─── Animated blue border glow ───────────────────────── */}
+
                 <motion.span
                   className="pointer-events-none absolute left-0 top-0 h-full w-[2px] origin-top bg-gradient-to-b from-accent via-blue-500 to-transparent opacity-0 group-hover:opacity-100"
                   variants={scanline}
@@ -146,7 +146,7 @@ const Projects = () => {
                   whileInView="visible"
                 />
 
-                {/* ─── Image ──────────────────────────────────────────────── */}
+
                 <motion.div
                   variants={variants.image}
                   initial="hidden"
@@ -162,7 +162,7 @@ const Projects = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                  {/* Overlay links */}
+
                   <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-500">
                     {project.github && (
                       <motion.a
@@ -203,14 +203,14 @@ const Projects = () => {
                   </div>
                 </motion.div>
 
-                {/* ─── Content ────────────────────────────────────────────── */}
+
                 <motion.div
                   variants={variants.text}
                   initial="hidden"
                   animate={isInView ? 'visible' : 'hidden'}
                   className="flex-1 p-6 md:p-8 flex flex-col justify-center relative"
                 >
-                  {/* Project Number */}
+
                   <motion.div
                     variants={variants.number}
                     initial="hidden"
@@ -241,7 +241,7 @@ const Projects = () => {
                     {project.description}
                   </p>
 
-                  {/* Action buttons */}
+
                   <div className="mt-5 flex flex-wrap gap-4">
                     {project.github && (
                       <a

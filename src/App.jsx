@@ -1,4 +1,4 @@
-// src/App.jsx
+
 import { useState, useEffect } from 'react';
 import { motion, useScroll } from 'framer-motion';
 import Loader from './components/Loader';
@@ -22,7 +22,7 @@ function App() {
     setIsLoading(false);
   };
 
-  // Prevent scroll while loading
+
   useEffect(() => {
     if (isLoading) {
       document.body.style.overflow = 'hidden';
@@ -36,10 +36,10 @@ function App() {
 
   return (
     <div className="bg-primary">
-      {/* Loader */}
+
       {isLoading && <Loader onComplete={handleLoaderComplete} />}
 
-      {/* Scroll Progress Bar */}
+
       <motion.div
         className="fixed top-0 left-0 right-0 h-0.5 bg-accent z-[9999]"
         style={{
@@ -49,7 +49,7 @@ function App() {
         }}
       />
 
-      {/* Main Content - Fades in after loader */}
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: isLoading ? 0 : 1 }}
