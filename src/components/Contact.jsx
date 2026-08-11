@@ -1,4 +1,4 @@
-// src/components/Contact.jsx
+
 import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
@@ -42,9 +42,11 @@ const Contact = () => {
 
   return (
     <section id="contact" className="relative overflow-hidden bg-primary py-24 sm:py-32 border-t border-white/5">
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-70" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3 max-w-4xl h-[4px] bg-accent/40 blur-md pointer-events-none" />
       <div className="relative mx-auto max-w-6xl px-6">
 
-        {/* Section Header with Split Letter Animation */}
+
         <div className="mb-14 text-center">
           <AnimatedHeading
             subtitle="Get in touch"
@@ -72,7 +74,7 @@ const Contact = () => {
           transition={{ delayChildren: 0.12, staggerChildren: 0.08 }}
           className="grid gap-8 lg:grid-cols-2"
         >
-          {/* Left Side - Contact Info */}
+
           <motion.div variants={fadeUp} transition={sectionTransition} className="space-y-10 text-gray-300">
             <motion.p variants={fadeUp} transition={sectionTransition} className="max-w-xl text-lg leading-8">
               Have a project, a role, or just want to say hi? Drop a message and I'll get back to you as soon as I can.
@@ -129,7 +131,7 @@ const Contact = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Side - Form */}
+
           <motion.div
             className="relative rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur-2xl shadow-[0_40px_120px_rgba(0,0,0,0.35)]"
             variants={fadeUp}
@@ -144,7 +146,7 @@ const Contact = () => {
                   <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">Name</p>
                   <input
                     type="text"
-                    name="from_name" // ⭐ Changed to match EmailJS template variable
+                    name="from_name"
                     placeholder="Your name"
                     required
                     className="w-full rounded-3xl border border-white/10 bg-primary/90 px-4 py-4 text-white placeholder:text-gray-500 outline-none transition focus:border-accent/50 focus:shadow-[0_0_18px_rgba(0,191,255,0.35)] focus:bg-primary/70"
@@ -154,7 +156,7 @@ const Contact = () => {
                   <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">Email</p>
                   <input
                     type="email"
-                    name="reply_to" // ⭐ Changed to match EmailJS template variable
+                    name="reply_to"
                     placeholder="you@example.com"
                     required
                     className="w-full rounded-3xl border border-white/10 bg-primary/90 px-4 py-4 text-white placeholder:text-gray-500 outline-none transition focus:border-accent/50 focus:shadow-[0_0_18px_rgba(0,191,255,0.35)] focus:bg-primary/70"
@@ -166,7 +168,7 @@ const Contact = () => {
                 <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">Subject</p>
                 <input
                   type="text"
-                  name="subject" // ⭐ Matches EmailJS template variable
+                  name="subject"
                   placeholder="What's this about?"
                   required
                   className="w-full rounded-3xl border border-white/10 bg-primary/90 px-4 py-4 text-white placeholder:text-gray-500 outline-none transition focus:border-accent/50 focus:shadow-[0_0_18px_rgba(0,191,255,0.35)] focus:bg-primary/70"
@@ -176,7 +178,7 @@ const Contact = () => {
               <div>
                 <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">Message</p>
                 <textarea
-                  name="message" // ⭐ Matches EmailJS template variable
+                  name="message"
                   rows="6"
                   placeholder="Tell me a bit about your project or idea..."
                   required

@@ -1,4 +1,4 @@
-// src/components/Experience.jsx
+
 import { motion } from 'framer-motion';
 import { experience } from '../data/data';
 import AnimatedHeading from './AnimatedHeading';
@@ -11,7 +11,7 @@ const Experience = () => {
     <section id="experience" className="py-24 sm:py-32 bg-secondary">
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
         
-        {/* Section Header */}
+
         <div className="mb-14 text-center">
           <AnimatedHeading
             subtitle="Career Journey"
@@ -31,7 +31,7 @@ const Experience = () => {
           />
         </div>
 
-        {/* Timeline */}
+
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={staggerContainer} transition={{ delayChildren: 0.08, staggerChildren: 0.08 }} className="relative mx-auto max-w-3xl">
           <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-white/10" />
           

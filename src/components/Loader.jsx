@@ -1,4 +1,4 @@
-// src/components/Loader.jsx
+
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { personalInfo } from '../data/data';
@@ -23,7 +23,7 @@ const Loader = ({ onComplete }) => {
     const firstName = personalInfo.name.split(' ')[0];
     const lastName = personalInfo.name.split(' ').slice(1).join(' ');
 
-    // ── Dismiss (called once, either from onEnded or fallback) ──
+    // Ensure loader is only dismissed once.
     const dismiss = useCallback(() => {
         if (dismissedRef.current) return;
         dismissedRef.current = true;
@@ -35,7 +35,7 @@ const Loader = ({ onComplete }) => {
         }, 300);
     }, [onComplete]);
 
-    // ── Animate progress bar in sync with video duration ──
+    // Sync progress bar with video duration.
     useEffect(() => {
         if (videoDuration === null) return;
         const totalMs = videoDuration * 1000;
@@ -54,7 +54,7 @@ const Loader = ({ onComplete }) => {
         return () => { if (progressRafRef.current) cancelAnimationFrame(progressRafRef.current); };
     }, [videoDuration]);
 
-    // ── Fallback timer ──
+
     useEffect(() => {
         const fallback = setTimeout(() => {
             if (!dismissedRef.current) dismiss();
@@ -69,7 +69,7 @@ const Loader = ({ onComplete }) => {
         }
     };
 
-    // ── Animation variants ──
+
     const letterVariants = {
         hidden: { opacity: 0, y: 30, filter: 'blur(8px)' },
         visible: (i) => ({
@@ -111,7 +111,7 @@ const Loader = ({ onComplete }) => {
                     }}
                 >
 
-                    {/* ── Ambient Glow ── */}
+
                     <div
                         className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
                         style={{ background: 'radial-gradient(circle, rgba(0,191,255,0.22) 0%, transparent 65%)', filter: 'blur(50px)' }}
@@ -125,26 +125,26 @@ const Loader = ({ onComplete }) => {
                         style={{ background: 'radial-gradient(circle, rgba(0,153,204,0.20) 0%, transparent 65%)', filter: 'blur(50px)' }}
                     />
 
-                    {/* ── Main Content ── */}
+
                     <div className="relative z-10 flex flex-col items-center justify-center gap-6 px-6 text-center">
 
-                        {/* Orbiting ring + initials badge */}
+
                         <div className="relative flex items-center justify-center w-28 h-28 mb-2">
-                            {/* Outer orbit */}
+
                             <motion.div
                                 className="absolute inset-0 rounded-full"
                                 style={{ border: '1.5px solid rgba(0,191,255,0.25)', boxShadow: '0 0 20px rgba(0,191,255,0.10)' }}
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
                             >
-                                {/* Orbit dot */}
+
                                 <div
                                     className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-accent"
                                     style={{ boxShadow: '0 0 8px rgba(0,191,255,0.9)' }}
                                 />
                             </motion.div>
 
-                            {/* Inner counter-orbit */}
+
                             <motion.div
                                 className="absolute inset-3 rounded-full"
                                 style={{ border: '1px solid rgba(255,255,255,0.08)' }}
@@ -152,7 +152,7 @@ const Loader = ({ onComplete }) => {
                                 transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
                             />
 
-                            {/* Initials badge */}
+
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.6 }}
                                 animate={{ opacity: 1, scale: 1 }}
@@ -169,7 +169,7 @@ const Loader = ({ onComplete }) => {
                                 </span>
                             </motion.div>
 
-                            {/* Ping glow ring */}
+
                             <motion.div
                                 className="absolute inset-0 rounded-full"
                                 style={{ border: '1px solid rgba(0,191,255,0.2)' }}
@@ -178,7 +178,7 @@ const Loader = ({ onComplete }) => {
                             />
                         </div>
 
-                        {/* Name — letter by letter */}
+
                         <div className="overflow-hidden">
                             <div className="flex flex-wrap items-baseline justify-center">
                                 {firstName.split('').map((char, i) => (
@@ -211,7 +211,7 @@ const Loader = ({ onComplete }) => {
                             </div>
                         </div>
 
-                        {/* Tagline */}
+
                         <motion.p
                             variants={taglineVariants}
                             initial="hidden"
@@ -222,7 +222,7 @@ const Loader = ({ onComplete }) => {
                             {personalInfo.subtitle}
                         </motion.p>
 
-                        {/* Decorative divider */}
+
                         <motion.div
                             initial={{ scaleX: 0, opacity: 0 }}
                             animate={{ scaleX: 1, opacity: 1 }}
@@ -231,7 +231,7 @@ const Loader = ({ onComplete }) => {
                             style={{ background: 'linear-gradient(90deg, transparent, rgba(0,191,255,0.5), transparent)' }}
                         />
 
-                        {/* Progress bar + percentage */}
+
                         <motion.div
                             initial={{ opacity: 0, y: 8 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -255,7 +255,7 @@ const Loader = ({ onComplete }) => {
                         </motion.div>
                     </div>
 
-                    {/* ── Bottom brand strip ── */}
+
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}

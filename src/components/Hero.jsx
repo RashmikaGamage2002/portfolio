@@ -37,7 +37,7 @@ const Hero = () => {
       id="home"
       className="min-h-screen relative overflow-hidden bg-primary"
     >
-      {/* Hero background with blue radials */}
+
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[50vh] w-[50vh] md:h-[70vh] md:w-[70vh] rounded-full bg-blue-500/20 blur-[100px]" />
         <div className="absolute inset-0">
@@ -50,8 +50,8 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28">
+
+      <div className="relative z-10 w-full mx-auto px-4 sm:px-6 lg:px-8 pt-28">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -59,7 +59,7 @@ const Hero = () => {
           transition={{ delayChildren: 0.1, staggerChildren: 0.08 }}
           className="text-center"
         >
-          <div className="mx-auto max-w-4xl">
+          <div className="mx-auto w-full">
             <motion.p
               className="text-[12px] uppercase tracking-[0.4em] text-gray-500 mb-4"
               variants={fadeIn}
@@ -69,12 +69,11 @@ const Hero = () => {
             </motion.p>
 
             <motion.h1
-              className="text-6xl sm:text-7xl md:text-8xl lg:text-[8rem] font-black uppercase leading-[0.9] tracking-tighter"
+              className="text-[11vw] sm:text-[9vw] md:text-[8vw] lg:text-[7vw] xl:text-[8rem] font-black uppercase leading-[0.9] tracking-tighter whitespace-nowrap flex justify-center gap-[2vw] md:gap-4"
               variants={fadeUp}
               transition={{ delay: 0.25, duration: 0.8, ease: [0.77, 0, 0.18, 1] }}
             >
               <span className="text-[#E6DACE]">Rashmika</span>
-              <br />
               <span className="text-transparent" style={{ WebkitTextStroke: '2px #E6DACE' }}>Gamage</span>
             </motion.h1>
 

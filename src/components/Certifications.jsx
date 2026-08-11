@@ -1,4 +1,4 @@
-// src/components/Certifications.jsx
+
 import { motion } from 'framer-motion';
 import { certifications } from '../data/data';
 import AnimatedHeading from './AnimatedHeading';
@@ -13,7 +13,7 @@ const Certifications = () => {
   return (
     <section id="certifications" className="relative overflow-hidden py-24 sm:py-32 bg-primary border-t border-white/5">
 
-      {/* Animated floating background blobs */}
+
       <motion.div className="pointer-events-none absolute top-10 -right-20 h-96 w-96 rounded-full"
         style={{ background: 'radial-gradient(circle, rgba(0,191,255,0.30) 0%, transparent 70%)', filter: 'blur(80px)' }}
         variants={blobVariants} animate="floatA" />
@@ -24,7 +24,7 @@ const Certifications = () => {
         style={{ background: 'radial-gradient(circle, rgba(0,153,204,0.25) 0%, transparent 70%)', filter: 'blur(70px)' }}
         animate={{ x: [0, 20, -30, 0], y: [0, -25, 30, 0], transition: { duration: 19, repeat: Infinity, ease: 'easeInOut' } }} />
 
-      {/* Animated grid overlay */}
+
       <motion.div
         className="pointer-events-none absolute inset-0 opacity-[0.04]"
         style={{
@@ -37,7 +37,7 @@ const Certifications = () => {
 
       <div className="relative container mx-auto px-4 sm:px-6 max-w-6xl">
 
-        {/* Section Header */}
+
         <div className="mb-14 text-center">
           <AnimatedHeading
             subtitle="Professional Growth"
@@ -74,11 +74,11 @@ const Certifications = () => {
               whileHover={{ y: -6, scale: 1.02 }}
               className="group relative block bg-primary/60 p-6 rounded-2xl border border-white/5 hover:border-accent/40 transition-all duration-300 hover:shadow-xl hover:shadow-accent/20 overflow-hidden"
             >
-              {/* Hover sweep highlight */}
+
               <span className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-out"
                 style={{ background: 'linear-gradient(110deg, transparent 40%, rgba(0,191,255,0.18) 50%, transparent 60%)' }} />
 
-              {/* Animated corner dot */}
+
               <motion.span
                 className="absolute top-3 right-3 h-2 w-2 rounded-full bg-accent opacity-0 group-hover:opacity-100"
                 style={{ boxShadow: '0 0 10px rgba(0,191,255,0.9)' }}

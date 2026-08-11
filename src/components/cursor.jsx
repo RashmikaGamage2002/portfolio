@@ -117,19 +117,19 @@ const Cursor = () => {
 
   if (isTouchDevice) return null;
 
-  // Water bubble sizes – bigger for maximum magnification
-  let lensSizeClasses = 'w-12 h-12 -ml-6 -mt-6'; // default 80px
+  // Adjust lens size based on target type
+  let lensSizeClasses = 'w-12 h-12 -ml-6 -mt-6';
   if (hoverType === 'interactive') {
-    lensSizeClasses = 'w-20 h-20 -ml-10 -mt-10'; // 112px for buttons/links
+    lensSizeClasses = 'w-20 h-20 -ml-10 -mt-10';
   } else if (hoverType === 'text') {
-    lensSizeClasses = 'w-16 h-16 -ml-8 -mt-8'; // 96px for text & fonts
+    lensSizeClasses = 'w-16 h-16 -ml-8 -mt-8';
   } else if (hoverType === 'image') {
-    lensSizeClasses = 'w-20 h-20 -ml-10 -mt-10'; // 80px for images
+    lensSizeClasses = 'w-20 h-20 -ml-10 -mt-10';
   }
 
   return (
     <>
-      {/* SVG Convex Magnification Filter – enhanced for maximum clear zoom */}
+      {/* SVG filter creates a liquid magnification effect */}
       <svg className="pointer-events-none fixed top-0 left-0 w-0 h-0 z-[-1]" aria-hidden="true">
         <defs>
           <radialGradient id="water-bubble-map" cx="50%" cy="50%" r="50%">
@@ -139,7 +139,7 @@ const Cursor = () => {
           </radialGradient>
 
           <filter id="water-magnifier" x="-50%" y="-50%" width="200%" height="200%">
-            {/* High displacement scale for powerful optical magnification */}
+
             <feTurbulence type="fractalNoise" baseFrequency="0.003" numOctaves="2" result="noise" />
             <feDisplacementMap
               in="SourceGraphic"
@@ -149,7 +149,7 @@ const Cursor = () => {
               yChannelSelector="G"
               result="displaced"
             />
-            {/* Softer specular highlight for water bubble feel */}
+
             <feSpecularLighting
               in="noise"
               surfaceScale="4"
@@ -166,19 +166,19 @@ const Cursor = () => {
         </defs>
       </svg>
 
-      {/* Main Cursor Anchor */}
+
       <div
         ref={cursorRef}
         className="pointer-events-none fixed top-0 left-0 z-[99999] will-change-transform"
         style={{ opacity: isVisible ? 0.8 : 0, transition: 'opacity 0.25s ease-out' }}
       >
-        {/* Water Bubble Lens */}
+
         <div
           ref={lensRef}
           className={`relative flex items-center justify-center rounded-full transition-all duration-300 ease-out ${lensSizeClasses}`}
           style={{ transformStyle: 'preserve-3d' }}
         >
-          {/* Bubble Body – glossy, translucent with sharp optical zoom */}
+
           <div
             className={`absolute inset-0 rounded-full transition-all duration-300 ${hoverType === 'interactive'
               ? 'bg-cyan-400/15 border-2 border-cyan-300/70 shadow-[0_0_35px_rgba(0,191,255,0.6)]'
@@ -192,7 +192,7 @@ const Cursor = () => {
             }}
           />
 
-          {/* Inner glow – like light trapped in water */}
+
           <div
             className="absolute inset-[2px] rounded-full pointer-events-none opacity-60"
             style={{
@@ -201,16 +201,16 @@ const Cursor = () => {
             }}
           />
 
-          {/* Top highlight – specular reflection of a water droplet */}
+
           <div className="absolute top-1 left-2 right-2 h-[45%] rounded-t-full bg-gradient-to-b from-white/80 via-white/30 to-transparent pointer-events-none" />
 
-          {/* Bottom reflection */}
+
           <div className="absolute bottom-1 left-4 right-4 h-[15%] rounded-b-full bg-white/10 pointer-events-none" />
 
-          {/* Ring outline – subtle bubble edge */}
+
           <div className="absolute inset-1 rounded-full border border-white/20 pointer-events-none" />
 
-          {/* Center Dot – small, like a water droplet core */}
+
           <motion.div
             animate={{
               scale: isClicked ? 0.5 : hoverType === 'interactive' ? 1.8 : 1,
@@ -220,7 +220,7 @@ const Cursor = () => {
             className="relative z-10 w-2.5 h-2.5 rounded-full shadow-[0_0_16px_#00BFFF]"
           />
 
-          {/* Animated ripple ring around interactive elements */}
+
           {hoverType === 'interactive' && (
             <motion.div
               initial={{ scale: 0.8, opacity: 0, rotate: 0 }}
@@ -236,7 +236,7 @@ const Cursor = () => {
         </div>
       </div>
 
-      {/* Click Ripples – water droplet impact ripples */}
+
       <AnimatePresence>
         {ripples.map((ripple) => (
           <motion.div

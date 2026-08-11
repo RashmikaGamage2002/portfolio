@@ -1,7 +1,7 @@
-// src/components/AnimatedHeading.jsx
+
 import { motion } from 'framer-motion';
 
-// Helper function to split text into characters
+
 const splitText = (text = '') => {
   return String(text)
     .split('')
@@ -25,14 +25,14 @@ const AnimatedHeading = ({
   align = 'center', // 'left', 'center', 'right'
   textSize = 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl',
 }) => {
-  // For 'split' mode: split text into two parts
+
   const leftChars = fromLeftText ? splitText(fromLeftText) : [];
   const rightChars = fromRightText ? splitText(fromRightText) : [];
 
-  // For other modes: all text goes together
+
   const allChars = splitText(text);
 
-  // Animation variants for characters coming from LEFT
+
   const leftCharVariants = {
     hidden: (i) => ({
       opacity: 0,
@@ -51,7 +51,7 @@ const AnimatedHeading = ({
     }),
   };
 
-  // Animation variants for characters coming from RIGHT
+
   const rightCharVariants = {
     hidden: (i) => ({
       opacity: 0,
@@ -70,7 +70,7 @@ const AnimatedHeading = ({
     }),
   };
 
-  // Animation variants for characters coming from CENTER (growing)
+
   const centerCharVariants = {
     hidden: (i) => ({
       opacity: 0,
@@ -89,7 +89,7 @@ const AnimatedHeading = ({
     }),
   };
 
-  // Animation variants for characters coming from LEFT (for left-aligned headings)
+
   const leftAlignedCharVariants = {
     hidden: (i) => ({
       opacity: 0,
@@ -106,7 +106,7 @@ const AnimatedHeading = ({
     }),
   };
 
-  // Animation variants for characters coming from RIGHT (for right-aligned headings)
+
   const rightAlignedCharVariants = {
     hidden: (i) => ({
       opacity: 0,
@@ -123,7 +123,7 @@ const AnimatedHeading = ({
     }),
   };
 
-  // Select the appropriate animation based on direction
+
   const getVariants = () => {
     switch (direction) {
       case 'left':
@@ -157,11 +157,11 @@ const AnimatedHeading = ({
           'text-center';
   }
 
-  // Render split mode (left + right parts)
+
   if (direction === 'split' && fromLeftText && fromRightText) {
     return (
       <div className={className}>
-        {/* Subtitle (eyebrow text) */}
+
         {subtitle && (
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -180,7 +180,7 @@ const AnimatedHeading = ({
           viewport={{ once: true, margin: "-50px" }}
           className={`flex flex-wrap ${justifyClass} items-center`}
         >
-          {/* Left Part */}
+
           <div className={`flex flex-nowrap ${justifyClass}`}>
             {leftChars.map(({ char, index }) => (
               <motion.span
@@ -197,12 +197,12 @@ const AnimatedHeading = ({
             ))}
           </div>
 
-          {/* Space between parts */}
+
           <span className={`${textSize} font-bold text-white inline-block w-2 sm:w-3`}>
             &nbsp;
           </span>
 
-          {/* Right Part */}
+
           <div className={`flex flex-nowrap ${justifyClass}`}>
             {rightChars.map(({ char, index }) => (
               <motion.span
@@ -223,7 +223,7 @@ const AnimatedHeading = ({
     );
   }
 
-  // Render standard mode (all characters together)
+
   return (
     <div className={className}>
       {subtitle && (
