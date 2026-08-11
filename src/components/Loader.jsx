@@ -95,7 +95,15 @@ const Loader = ({ onComplete }) => {
             {isVisible && (
                 <motion.div
                     className="fixed inset-0 z-[99999] flex flex-col items-center justify-center select-none overflow-hidden"
-                    style={{ background: '#0B0B0B' }}
+                    style={{
+                        background: '#0B0B0B',
+                        backgroundImage: `
+                            radial-gradient(ellipse 80% 60% at 20% 10%, rgba(0,191,255,0.18) 0%, transparent 60%),
+                            radial-gradient(ellipse 70% 60% at 85% 85%, rgba(0,153,204,0.15) 0%, transparent 60%),
+                            radial-gradient(ellipse 60% 50% at 50% 50%, rgba(59,130,246,0.12) 0%, transparent 70%),
+                            linear-gradient(135deg, #050b1a 0%, #0B0B0B 50%, #06122a 100%)
+                        `,
+                    }}
                     initial={{ opacity: 1 }}
                     exit={{
                         opacity: 0, y: '-100%',
@@ -105,8 +113,16 @@ const Loader = ({ onComplete }) => {
 
                     {/* ── Ambient Glow ── */}
                     <div
-                        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[480px] rounded-full pointer-events-none"
-                        style={{ background: 'radial-gradient(circle, rgba(0,191,255,0.10) 0%, transparent 70%)', filter: 'blur(40px)' }}
+                        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
+                        style={{ background: 'radial-gradient(circle, rgba(0,191,255,0.22) 0%, transparent 65%)', filter: 'blur(50px)' }}
+                    />
+                    <div
+                        className="absolute top-1/4 left-1/4 w-[400px] h-[400px] rounded-full pointer-events-none"
+                        style={{ background: 'radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 65%)', filter: 'blur(50px)' }}
+                    />
+                    <div
+                        className="absolute bottom-1/4 right-1/4 w-[420px] h-[420px] rounded-full pointer-events-none"
+                        style={{ background: 'radial-gradient(circle, rgba(0,153,204,0.20) 0%, transparent 65%)', filter: 'blur(50px)' }}
                     />
 
                     {/* ── Main Content ── */}

@@ -139,15 +139,23 @@ const AnimatedHeading = ({
     }
   };
 
-  const effectiveAlign = align !== 'center' ? align : (direction === 'left' ? 'left' : direction === 'right' ? 'right' : 'center');
-  const justifyClass =
-    effectiveAlign === 'left' ? 'justify-start' :
-      effectiveAlign === 'right' ? 'justify-end' :
-        'justify-center';
-  const subtitleAlignClass =
-    effectiveAlign === 'left' ? 'text-left' :
-      effectiveAlign === 'right' ? 'text-right' :
-        'text-center';
+  let justifyClass = '';
+  let subtitleAlignClass = '';
+
+  if (align === 'mobile-center') {
+    justifyClass = 'justify-center md:justify-start';
+    subtitleAlignClass = 'text-center md:text-left';
+  } else {
+    const effectiveAlign = align !== 'center' ? align : (direction === 'left' ? 'left' : direction === 'right' ? 'right' : 'center');
+    justifyClass =
+      effectiveAlign === 'left' ? 'justify-start' :
+        effectiveAlign === 'right' ? 'justify-end' :
+          'justify-center';
+    subtitleAlignClass =
+      effectiveAlign === 'left' ? 'text-left' :
+        effectiveAlign === 'right' ? 'text-right' :
+          'text-center';
+  }
 
   // Render split mode (left + right parts)
   if (direction === 'split' && fromLeftText && fromRightText) {

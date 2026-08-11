@@ -7,16 +7,16 @@ import { fadeUp, lineReveal, cardReveal, staggerContainer, sectionTransition } f
 const About = () => {
   return (
     <section id="about" className="relative min-h-screen py-20 overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('/about-bg.png')`,
-          backgroundAttachment: 'fixed' // Optional: parallax effect
-        }}
-      >
-        {/* Dark Overlay - adjust opacity as needed */}
-        <div className="absolute inset-0 bg-primary/10 "></div>
+      {/* ─── Background Layer (Desktop Only) ─────────────────────── */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden hidden md:block">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('/about-bg.png')`,
+            backgroundAttachment: 'fixed'
+          }}
+        />
+        <div className="absolute inset-0 "></div>
       </div>
 
       {/* Content - positioned on top of background */}
@@ -27,7 +27,7 @@ const About = () => {
           viewport={{ once: true, amount: 0.2 }}
           variants={staggerContainer}
           transition={{ delayChildren: 0.08, staggerChildren: 0.07 }}
-          className="pl-[10px] pr-[60px]"
+          className="px-4 md:pl-[10px] md:pr-[60px]"
         >
           {/* Heading */}
           <AnimatedHeading
@@ -36,10 +36,54 @@ const About = () => {
             fromLeftText="About"
             fromRightText="Me"
             className="mb-4"
-            align="left"
+            align="mobile-center"
           />
 
-          <motion.div variants={lineReveal} transition={{ duration: 0.7, delay: 0.2, ease: [0.77, 0, 0.18, 1] }} className="w-16 h-1 bg-accent rounded-full mb-8"></motion.div>
+          <motion.div variants={lineReveal} transition={{ duration: 0.7, delay: 0.2, ease: [0.77, 0, 0.18, 1] }} className="w-16 h-1 bg-accent rounded-full mx-auto md:mx-0 mb-8"></motion.div>
+
+          {/* Mobile 3D Circle Image */}
+          <motion.div
+            className="md:hidden flex justify-center mb-10 w-full pt-4"
+            variants={fadeUp}
+            style={{ perspective: '1200px' }}
+          >
+            <motion.div
+              className="relative w-56 h-56 sm:w-64 sm:h-64 flex items-center justify-center"
+              style={{ transformStyle: 'preserve-3d' }}
+              animate={{
+                rotateX: [8, -8, 8],
+                rotateY: [-12, 12, -12],
+                y: [0, -15, 0],
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              {/* Halo / Glow Ring */}
+              <motion.div
+                className="absolute inset-0 rounded-full border border-accent/40"
+                style={{ translateZ: -20 }}
+                animate={{
+                  boxShadow: [
+                    '0 0 20px rgba(0,191,255,0.1)',
+                    '0 0 40px rgba(0,191,255,0.4)',
+                    '0 0 20px rgba(0,191,255,0.1)'
+                  ]
+                }}
+                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+              />
+
+              {/* Actual Image */}
+              <motion.img
+                src="/about-bg2.png"
+                alt="About"
+                className="w-full h-full rounded-full object-cover object-center border-2 border-primary shadow-xl"
+                style={{ translateZ: 20 }}
+              />
+            </motion.div>
+          </motion.div>
 
           {/* Content */}
           <div className="space-y-6 text-lightText/90 text-base md:text-lg leading-relaxed text-left max-w-3xl">
@@ -69,25 +113,8 @@ const About = () => {
             </motion.div>
 
             <motion.p variants={fadeUp} transition={{ ...sectionTransition, delay: 0.24 }}>
-              Currently, I am honing my skills as a Frontend Developer at Daraz, where I collaborate with cross-functional teams to
-              improve user interfaces and deliver high-quality features. Alongside my work, I am exploring the intersection of design
-              and development, with a focus on creating accessible and engaging web applications.
+              Currently, I am pursuing my BSc (Hons) in Software Engineering at NSBM Green University, continuously refining my skills through academic work, personal projects, and hands-on exploration. My focus lies at the intersection of frontend development and UI/UX design, where I aim to create modern, accessible, and engaging digital experiences while growing into a well-rounded software engineer.
             </motion.p>
-
-            <motion.div variants={fadeUp} transition={{ ...sectionTransition, delay: 0.28 }} className="mt-8 pt-6 border-t border-primary/50 flex flex-wrap gap-x-6 gap-y-2 text-sm text-dimText text-left">
-              <span>
-                <FaBirthdayCake className="inline text-accent mr-2" />
-                <span className="font-semibold text-lightText">Born:</span> 24 March 2002
-              </span>
-              <span>
-                <FaMapMarkerAlt className="inline text-accent mr-2" />
-                <span className="font-semibold text-lightText">Location:</span> {personalInfo.location}
-              </span>
-              <span>
-                <FaGraduationCap className="inline text-accent mr-2" />
-                <span className="font-semibold text-lightText">Education:</span> {personalInfo.education}
-              </span>
-            </motion.div>
           </div>
         </motion.div>
       </div>
