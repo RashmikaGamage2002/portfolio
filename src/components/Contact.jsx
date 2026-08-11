@@ -1,7 +1,6 @@
-
+// src/components/Contact.jsx
 import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import emailjs from '@emailjs/browser';
 import { FaEnvelope, FaMapMarkerAlt, FaGithub, FaLinkedin } from 'react-icons/fa';
 import { AiFillInstagram } from 'react-icons/ai';
 import { personalInfo } from '../data/data';
@@ -13,31 +12,42 @@ const Contact = () => {
   const [status, setStatus] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-
-  const SERVICE_ID = 'service_jc43ddf';
-  const TEMPLATE_ID = 'template_vfiijuj';
-  const PUBLIC_KEY = '3s1wb0RijuExFxaBt';
+  // ─── YOUR WHATSAPP NUMBER ──────────────────────────────────────────────────
+  // Format: Country code + phone number (no +, no spaces, no dashes)
+  const YOUR_PHONE_NUMBER = '94728824504'; // ⭐ Sri Lanka: 94 72 8824504
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (!formRef.current) return;
+    // ─── Get form data ──────────────────────────────────────────────────────
+    const form = formRef.current;
+    if (!form) return;
+
+    const name = form.from_name.value.trim();
+    const message = form.message.value.trim();
+
+    if (!name || !message) {
+      setStatus('❌ Please fill in both Name and Message fields.');
+      return;
+    }
 
     setIsLoading(true);
     setStatus('');
 
-    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY)
-      .then(() => {
-        setStatus('✅ Message sent successfully! I\'ll get back to you soon.');
-        event.target.reset();
-      })
-      .catch((error) => {
-        console.error('EmailJS error:', error);
-        setStatus('❌ Something went wrong. Please try again later.');
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    // ─── Build WhatsApp message ─────────────────────────────────────────────
+    // %0A = line break, %20 = space, %2C = comma
+    const whatsappMessage = `Name: ${name}%0A%0A${message}`;
+
+    // ─── Create WhatsApp URL ────────────────────────────────────────────────
+    const url = `https://wa.me/${YOUR_PHONE_NUMBER}?text=${whatsappMessage}`;
+
+    // ─── Redirect to WhatsApp ──────────────────────────────────────────────
+    window.open(url, '_blank');
+
+    // ─── Reset form and show success ──────────────────────────────────────
+    form.reset();
+    setStatus('✅ Redirecting to WhatsApp...');
+    setIsLoading(false);
   };
 
   return (
@@ -46,7 +56,7 @@ const Contact = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3 max-w-4xl h-[4px] bg-accent/40 blur-md pointer-events-none" />
       <div className="relative mx-auto max-w-6xl px-6">
 
-
+        {/* ─── HEADER ────────────────────────────────────────────────────────── */}
         <div className="mb-14 text-center">
           <AnimatedHeading
             subtitle="Get in touch"
@@ -66,6 +76,7 @@ const Contact = () => {
           />
         </div>
 
+        {/* ─── CONTENT ────────────────────────────────────────────────────────── */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -75,6 +86,7 @@ const Contact = () => {
           className="grid gap-8 lg:grid-cols-2"
         >
 
+          {/* ─── LEFT: Contact Info ──────────────────────────────────────────── */}
           <motion.div variants={fadeUp} transition={sectionTransition} className="space-y-10 text-gray-300">
             <motion.p variants={fadeUp} transition={sectionTransition} className="max-w-xl text-lg leading-8">
               Have a project, a role, or just want to say hi? Drop a message and I'll get back to you as soon as I can.
@@ -105,7 +117,6 @@ const Contact = () => {
                 rel="noreferrer"
                 className="group/social flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-300 transition hover:border-accent/60 hover:text-accent"
               >
-                <span className="absolute" />
                 <FaGithub />
               </motion.a>
               <motion.a
@@ -131,7 +142,7 @@ const Contact = () => {
             </motion.div>
           </motion.div>
 
-
+          {/* ─── RIGHT: Form ──────────────────────────────────────────────────── */}
           <motion.div
             className="relative rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur-2xl shadow-[0_40px_120px_rgba(0,0,0,0.35)]"
             variants={fadeUp}
@@ -193,14 +204,15 @@ const Contact = () => {
                 whileHover={!isLoading ? hoverLift : {}}
                 whileTap={!isLoading ? { scale: 0.98 } : {}}
               >
-                {isLoading ? 'Sending...' : 'Send Message'}
+                {isLoading ? 'Redirecting...' : 'Send Message'}
               </motion.button>
 
               {status && (
-                <div className={`rounded-3xl border px-5 py-4 text-sm ${status.includes('successfully')
-                  ? 'border-green-500/20 bg-green-500/10 text-green-400'
-                  : 'border-red-500/20 bg-red-500/10 text-red-400'
-                  }`}>
+                <div className={`rounded-3xl border px-5 py-4 text-sm ${
+                  status.includes('successfully') || status.includes('Redirecting')
+                    ? 'border-green-500/20 bg-green-500/10 text-green-400'
+                    : 'border-red-500/20 bg-red-500/10 text-red-400'
+                }`}>
                   {status}
                 </div>
               )}
