@@ -8,11 +8,6 @@ import { personalInfo } from '../data/data';
 import AnimatedHeading from './AnimatedHeading';
 import { fadeUp, lineReveal, hoverLift, sectionTransition, sectionTransitionDelayed, staggerContainer } from '../animationVariants';
 
-const blobVariants = {
-  floatA: { x: [0, 35, -25, 0], y: [0, -30, 20, 0], transition: { duration: 15, repeat: Infinity, ease: 'easeInOut' } },
-  floatB: { x: [0, -30, 25, 0], y: [0, 25, -20, 0], transition: { duration: 19, repeat: Infinity, ease: 'easeInOut' } },
-};
-
 const Contact = () => {
   const formRef = useRef(null);
   const [status, setStatus] = useState('');
@@ -47,31 +42,6 @@ const Contact = () => {
 
   return (
     <section id="contact" className="relative overflow-hidden bg-primary py-24 sm:py-32 border-t border-white/5">
-      {/* Background decorations */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-accent/10 to-transparent blur-3xl" />
-
-      {/* Animated floating blobs */}
-      <motion.div className="pointer-events-none absolute top-20 -left-20 h-96 w-96 rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(0,191,255,0.30) 0%, transparent 70%)', filter: 'blur(80px)' }}
-        variants={blobVariants} animate="floatA" />
-      <motion.div className="pointer-events-none absolute -bottom-32 -right-20 h-[28rem] w-[28rem] rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(37,99,235,0.25) 0%, transparent 70%)', filter: 'blur(90px)' }}
-        variants={blobVariants} animate="floatB" />
-      <motion.div className="pointer-events-none absolute top-1/3 left-1/3 h-72 w-72 rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(0,153,204,0.28) 0%, transparent 70%)', filter: 'blur(70px)' }}
-        animate={{ x: [0, 25, -25, 0], y: [0, -20, 30, 0], transition: { duration: 17, repeat: Infinity, ease: 'easeInOut' } }} />
-
-      {/* Animated grid overlay */}
-      <motion.div
-        className="pointer-events-none absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0,191,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(0,191,255,0.6) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px',
-        }}
-        animate={{ backgroundPosition: ['0px 0px', '60px 60px'] }}
-        transition={{ duration: 14, repeat: Infinity, ease: 'linear' }}
-      />
-
       <div className="relative mx-auto max-w-6xl px-6">
 
         {/* Section Header with Split Letter Animation */}
@@ -161,23 +131,13 @@ const Contact = () => {
 
           {/* Right Side - Form */}
           <motion.div
-            className="relative rounded-[2rem] p-[1px] overflow-hidden shadow-[0_40px_120px_rgba(0,0,0,0.35)]"
+            className="relative rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur-2xl shadow-[0_40px_120px_rgba(0,0,0,0.35)]"
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.75, ease: [0.77, 0, 0.18, 1], delay: 0.25 }}
           >
-            {/* Rotating animated border */}
-            <motion.div
-              className="absolute inset-0 rounded-[2rem]"
-              style={{
-                background: 'conic-gradient(from 0deg, rgba(0,191,255,0.6), rgba(37,99,235,0.3), rgba(0,153,204,0.6), rgba(0,191,255,0.6))',
-              }}
-              animate={{ rotate: 360 }}
-              transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
-            />
-            <div className="relative rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur-2xl">
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
@@ -243,7 +203,6 @@ const Contact = () => {
                 </div>
               )}
             </form>
-            </div>
           </motion.div>
         </motion.div>
       </div>

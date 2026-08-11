@@ -1,15 +1,10 @@
 // src/components/Projects.jsx
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaFigma } from 'react-icons/fa';
 import { projects } from '../data/data';
 import AnimatedHeading from './AnimatedHeading';
-
-const blobVariants = {
-  floatA: { x: [0, 40, -20, 0], y: [0, -30, 20, 0], transition: { duration: 14, repeat: Infinity, ease: 'easeInOut' } },
-  floatB: { x: [0, -30, 30, 0], y: [0, 25, -15, 0], transition: { duration: 18, repeat: Infinity, ease: 'easeInOut' } },
-  floatC: { x: [0, 25, -25, 0], y: [0, 20, -30, 0], transition: { duration: 16, repeat: Infinity, ease: 'easeInOut' } },
-};
+import { lineReveal } from '../animationVariants';
 
 const scanline = {
   hidden: { scaleY: 0, opacity: 0 },
@@ -88,28 +83,6 @@ const Projects = () => {
       id="projects"
       className="relative border-t border-white/5 py-24 sm:py-32"
     >
-      {/* ─── Animated background blobs ─── */}
-      <motion.div className="pointer-events-none absolute top-10 left-10 h-72 w-72 rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(0,191,255,0.30) 0%, transparent 70%)', filter: 'blur(70px)' }}
-        variants={blobVariants} animate="floatA" />
-      <motion.div className="pointer-events-none absolute top-1/2 right-10 h-80 w-80 rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(37,99,235,0.25) 0%, transparent 70%)', filter: 'blur(80px)' }}
-        variants={blobVariants} animate="floatB" />
-      <motion.div className="pointer-events-none absolute bottom-10 left-1/3 h-64 w-64 rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(0,153,204,0.28) 0%, transparent 70%)', filter: 'blur(70px)' }}
-        variants={blobVariants} animate="floatC" />
-
-      {/* ─── Animated grid overlay ─── */}
-      <motion.div
-        className="pointer-events-none absolute inset-0 opacity-[0.05]"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0,191,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(0,191,255,0.6) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px',
-        }}
-        animate={{ backgroundPosition: ['0px 0px', '60px 60px'] }}
-        transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
-      />
-
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
 
         {/* ─── Heading ──────────────────────────────────────────────────────── */}
@@ -122,13 +95,15 @@ const Projects = () => {
             className="mb-4"
             align="center"
           />
-          <p className="text-dimText font-light max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
-            A space for self-initiated products, prototypes, and creative systems
-            shaped by curiosity, code, and fast iteration.
-          </p>
-          <div className="mt-4 flex justify-center">
-            <div className="w-16 h-px bg-accent/30" />
-          </div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={lineReveal}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.77, 0, 0.18, 1] }}
+            className="mx-auto mt-4 h-1.5 w-24 rounded-full bg-accent"
+          />
         </div>
 
         {/* ─── Cards ────────────────────────────────────────────────────────── */}
@@ -164,18 +139,6 @@ const Projects = () => {
                   } flex flex-col`}
               >
                 {/* ─── Animated blue border glow ───────────────────────── */}
-                <span className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(0,191,255,0.6), rgba(37,99,235,0.4), rgba(0,153,204,0.6))',
-                    backgroundSize: '200% 200%',
-                  }}>
-                  <motion.span
-                    className="absolute inset-[1px] rounded-2xl bg-cardBg"
-                    animate={{ backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
-                    style={{ backgroundImage: 'linear-gradient(135deg, rgba(0,191,255,0.0), rgba(0,153,204,0.0))' }}
-                  />
-                </span>
                 <motion.span
                   className="pointer-events-none absolute left-0 top-0 h-full w-[2px] origin-top bg-gradient-to-b from-accent via-blue-500 to-transparent opacity-0 group-hover:opacity-100"
                   variants={scanline}

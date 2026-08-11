@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import { experience } from '../data/data';
 import AnimatedHeading from './AnimatedHeading';
-import { fadeUp, staggerContainer, sectionTransition } from '../animationVariants';
+import { fadeUp, lineReveal, staggerContainer, sectionTransition } from '../animationVariants';
 
 const Experience = () => {
   const ACCENT = '#00BFFF';
@@ -19,6 +19,15 @@ const Experience = () => {
             fromLeftText="Experience &"
             fromRightText="Achievements"
             className="mb-4"
+          />
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={lineReveal}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.77, 0, 0.18, 1] }}
+            className="mx-auto mt-4 h-1.5 w-24 rounded-full bg-accent"
           />
         </div>
 
