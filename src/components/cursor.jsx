@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Cursor = () => {
+const cursor = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoverType, setHoverType] = useState('default');
   const [isClicked, setIsClicked] = useState(false);
@@ -254,4 +254,4 @@ const Cursor = () => {
   );
 };
 
-export default Cursor;
+export default cursor;
