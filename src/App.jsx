@@ -12,7 +12,7 @@ import GitHubStats from './components/GitHubStats';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
-import Cursor from './components/cursor';
+import Cursor from './components/Cursor';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -55,7 +55,7 @@ function App() {
         animate={{ opacity: isLoading ? 0 : 1 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <cursor />
+        <Cursor />
         <Navbar />
         <Hero />
         <About />
