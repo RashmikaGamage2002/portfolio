@@ -55,7 +55,7 @@ function App() {
         animate={{ opacity: isLoading ? 0 : 1 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <Cursor />
+        <cursor />
         <Navbar />
         <Hero />
         <About />
