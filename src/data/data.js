@@ -51,7 +51,22 @@ export const experience = [
     period: "2022 — 2023",
     description:
       "Managed daily hub operations, supervised staff, monitored shipment processing, and ensured accurate order handling for efficient and timely deliveries.",
-  }];
+  },
+
+{
+    company: "ICCE Club",
+    role: "Project Assistant",
+    period: "2026 — Present",
+    description:
+      "Support project planning and coordination, collaborate with team members, and contribute to the successful execution of club initiatives and activities.",
+  },
+{
+    company: "Hospital Management System",
+    role: "Full-Stack Developer",
+    period: "2026 ",
+    description:
+      "Developed a hospital management system with a React frontend , Node.js backend and MySQL DB, implementing patient, staff, appointment, and hospital data management features.",
+  },];
 
 export const certifications = [
   {
