@@ -117,7 +117,7 @@ const Hero = () => {
             transition={{ delay: 0.55, duration: 0.6, ease: [0.77, 0, 0.18, 1] }}
           >
             <motion.a
-              href="/Resume.pdf"
+              href="/Rashmika Gamage.pdf"
               download
               className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 sm:px-9 py-3.5 sm:py-4 text-sm font-semibold text-primary shadow-[0_20px_60px_rgba(0,191,255,0.28)] transition-all hover:bg-blue-400"
               whileHover={{ scale: 1.02 }}
